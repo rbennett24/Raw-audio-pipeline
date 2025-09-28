@@ -3,6 +3,7 @@ import glob
 import os
 from pathlib import Path
 
+# Update path
 path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
 mp3_files = glob.glob(os.path.join(path+"mp3s/", "*.mp3")) # Not case sensitive
 

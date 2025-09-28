@@ -16,6 +16,7 @@ pipeline = Pipeline.from_pretrained(
 import torch
 # pipeline.to(torch.device("cuda")) # CUDA needs to be installed from NVIDIA
 
+# Update path
 path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
 wav_files = glob.glob(os.path.join(path+"initial_recordings/", "*.wav")) # Not case sensitive
 

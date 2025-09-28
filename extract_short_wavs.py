@@ -8,7 +8,7 @@ from os.path import join
 from praatio import praatio_scripts
 import glob
 
-# path = join(".", "files")
+# Update path
 path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
 outputPath = join(path, "mfa_input/")
 

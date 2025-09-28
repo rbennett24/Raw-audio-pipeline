@@ -9,7 +9,7 @@ Goals:
 * Other types of flexibility?
 **************
 
-0. If needed, convert mp3 files to .wav using mp3_to_wav_converter.py
+0. If needed, convert mp3 files to .wav using (mp3_to_wav_converter.py)
 
 1. Get raw audio (.wav format)
 
@@ -21,7 +21,7 @@ Goals:
 
 4. Apply extract_short_wavs.py to extract all labeled intervals from diarization, using [praatIO](https://github.com/timmahrt/praatIO)
 
-	* To do: apply volume normalization first
+	* **To do**: apply volume normalization first
 
 5. Apply speech recognition to generate .txt transcripts with whisper_transcription.py, using [whisper.ai](https://github.com/openai/whisper)
 

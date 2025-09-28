@@ -9,31 +9,31 @@ Goals:
 * Other types of flexibility?
 **************
 
-0. If needed, convert mp3 files to .wav using [mp3_to_wav_converter.py](Python scripts/mp3_to_wav_converter.py)
+0. If needed, convert mp3 files to .wav using [mp3_to_wav_converter.py](Python/mp3_to_wav_converter.py)
 
 1. Get raw audio (.wav format)
 
-2. Apply [diarization.py](Python scripts/diarization.py) to generate a .TextGrid delimiting regions of speech, using [pyannote.audio](https://github.com/pyannote/pyannote-audio)
+2. Apply [diarization.py](Python/diarization.py) to generate a .TextGrid delimiting regions of speech, using [pyannote.audio](https://github.com/pyannote/pyannote-audio)
 
 	* pyannote.audio installation: https://github.com/pyannote/pyannote-audio?tab=readme-ov-file#tldr
 	* You'll need a Hugging Face access token (https://huggingface.co/settings/tokens), with fine grained permissions set to approve "Read access to contents of all public gated repos you can access".
 
-3. Hand correct speech detection from [diarization.py](Python scripts/diarization.py)
+3. Hand correct speech detection from [diarization.py](Python/diarization.py)
 
 	* Currently set up for just one speaker per file, but that could be easily changed.
 
-4. Apply [extract_short_wavs.py](Python scripts/extract_short_wavs.py) to extract all labeled intervals from diarization, using [praatIO](https://github.com/timmahrt/praatIO)
+4. Apply [extract_short_wavs.py](Python/extract_short_wavs.py) to extract all labeled intervals from diarization, using [praatIO](https://github.com/timmahrt/praatIO)
 
 	* **To do**: apply volume normalization first
 
-5. Apply speech recognition to generate .txt transcripts with [whisper_transcription.py](Python scripts/whisper_transcription.py), using [whisper.ai](https://github.com/openai/whisper)
+5. Apply speech recognition to generate .txt transcripts with [whisper_transcription.py](Python/whisper_transcription.py), using [whisper.ai](https://github.com/openai/whisper)
 
 	* This is slow.
 	* whisper.ai installation: https://github.com/openai/whisper#setup
 
 6. Correct transcripts
 
-7. Apply forced alignment with [run_mfa.py](Python scripts/run_mfa.py), using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
+7. Apply forced alignment with [run_mfa.py](Python/run_mfa.py), using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
 
 	* MFA installation: https://montreal-forced-aligner.readthedocs.io/en/latest/getting_started.html
 

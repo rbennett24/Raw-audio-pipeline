@@ -9,23 +9,23 @@ Goals:
 * Other types of flexibility?
 **************
 
-(0) If needed, convert mp3 files to .wav using mp3_to_wav_converter.py
+0. If needed, convert mp3 files to .wav using mp3_to_wav_converter.py
 
-(1) Get raw audio (.wav format)
+1. Get raw audio (.wav format)
 
-(2) Apply diarization.py to generate a .TextGrid delimiting regions of speech.
+2. Apply diarization.py to generate a .TextGrid delimiting regions of speech.
 
-(3) Hand correct speech detection from diarization.py
+3. Hand correct speech detection from diarization.py
 
-(4) Apply extract_short_wavs.py to extract all labeled intervals from diarization
+4. Apply extract_short_wavs.py to extract all labeled intervals from diarization
 
 	=> To do: apply volume normalization first
 
-(5) Apply speech recognition to generate .txt transcripts with whisper_transcription.py
+5. Apply speech recognition to generate .txt transcripts with whisper_transcription.py
 
 	=> This is slow.
 
-(6) Correct transcripts
+6. Correct transcripts
 
 (7) Apply forced alignment with run_mfa.py, using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
 

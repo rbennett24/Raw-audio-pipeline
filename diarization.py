@@ -8,9 +8,11 @@ import csv
 import os
 import glob
 
+access_token = os.environ.get('HF_TOKEN') # I have a Hugging Face token stored on my Desktop as an environmental variable
+
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",
-    use_auth_token="") # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
+    use_auth_token=access_token) # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
 
 # send pipeline to GPU (when available)
 import torch

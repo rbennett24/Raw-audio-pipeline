@@ -8,7 +8,11 @@ import csv
 import os
 import glob
 
-access_token = os.environ.get('HF_TOKEN') # I have a Hugging Face token stored on my Desktop as an environmental variable
+# I have a Hugging Face token stored on my Desktop as an environmental variable.
+# We access it here, without publishing it in the code itself, for security reasons.
+# To get an HF token, 
+# In Window,s on the command line, use <set HF_TOKEN = "YOUR_ACTUAL_TOKEN_CODE">
+access_token = os.environ.get('HF_TOKEN') 
 
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",

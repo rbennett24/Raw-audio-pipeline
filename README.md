@@ -15,7 +15,8 @@ Goals:
 
 2. Apply diarization.py to generate a .TextGrid delimiting regions of speech, using [pyannote.audio](https://github.com/pyannote/pyannote-audio)
 
-	* pyannote.audio installation: https://github.com/pyannote/pyannote-audio#TL;DR
+	* pyannote.audio installation: https://github.com/pyannote/pyannote-audio?tab=readme-ov-file#tldr
+	* You'll need a Hugging Face access token (https://huggingface.co/settings/tokens), with fine grained permissions set to approve "Read access to contents of all public gated repos you can access".
 
 3. Hand correct speech detection from diarization.py
 

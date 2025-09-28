@@ -1,6 +1,7 @@
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
+from pathlib import Path
 
 # Parameters
 mfadict = "english_us_arpa" # "english_us_mfa"
@@ -9,6 +10,7 @@ spkPrefixLen = "5"
 inputPath = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/mfa_input/"
 
 
+############
 # Update chosen dictionary file?
 root = tk.Tk()
 root.withdraw() # Hide the main window if you only want the prompt
@@ -24,12 +26,14 @@ if result == True:
 
 	print(ret.stdout.decode())
 
+
+############
 # Update chosen acoustic model?
 result = messagebox.askyesno(title="Download acoustic model?",
 								   message=("Do you want to download and update the %s acoustic model?" % mfamodel))
 
 if result == True:
-	# Open command line, start conda, force download of newest version of dictionary
+	# Open command line, start conda, force download of newest version of acoustic model
 	command = "conda activate mfaaligner && mfa model download acoustic " + mfamodel + " --ignore_cache"
 
 	ret = subprocess.run(command, capture_output=True, shell=True)
@@ -42,8 +46,8 @@ if result == True:
 # #######################
 
 
+############
 # Run validation?
-# Update chosen acoustic model?
 result = messagebox.askyesno(title="Run validation?",
 								   message=("Do you want to run validation before aligning"))
 
@@ -53,24 +57,21 @@ if result == True:
 
 	subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
+
+############
+# Run alignment?
+result = messagebox.askyesno(title="Run alignment?",
+								   message=("Are you ready to align your data?"))
+
+if result == True:
+	outPutLoc = inputPath.replace("mfa_input","mfa_aligned")
+	Path(outPutLoc).mkdir(parents=True, exist_ok=True)
+
+	# Open command line, start conda, force download of newest version of dictionary
+	command = "conda activate mfaaligner && mfa align --clean " + inputPath + " " + mfadict + " " + mfamodel + " --speaker_characters " + spkPrefixLen + " " + outPutLoc
+
+	subprocess.Popen(["start", "cmd", "/k", command], shell=True)
+
+
 # Terminate GUI
 root.destroy()
-
-
-
-# #####################
-# # Open command line, start conda, force download of newest versions of dictionary and acoustic model, and run validation.
-# command = "conda activate mfaaligner; mfa model download dictionary " + mfadict + " --ignore_cache ; mfa model download acoustic " + mfamodel + " --ignore_cache; mfa validate --clean " + inputPath + " " + mfadict + " " + mfamodel + " --speaker_characters " + spkPrefixLen
-
-# ret = subprocess.run(command, capture_output=True, shell=True)
-
-# print(ret.stdout.decode())
-# #####################
-
-# # Open command line, start conda, align data.
-# outPutLoc = inputPath.replace("mfa_input","mfa_aligned")
-# command = "conda activate mfaaligner; mfa align --clean " + inputPath + " " + mfadict + " " + mfamodel + " --speaker_characters " + spkPrefixLen + " " + outPutLoc
-
-# ret = subprocess.run(command, capture_output=True, shell=True)
-
-# print(ret.stdout.decode())

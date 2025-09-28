@@ -18,20 +18,20 @@ Goals:
 	* pyannote.audio installation: https://github.com/pyannote/pyannote-audio?tab=readme-ov-file#tldr
 	* You'll need a Hugging Face access token (https://huggingface.co/settings/tokens), with fine grained permissions set to approve "Read access to contents of all public gated repos you can access".
 
-3. Hand correct speech detection from diarization.py
+3. Hand correct speech detection from [diarization.py](diarization.py)
 
 4. Apply extract_short_wavs.py to extract all labeled intervals from diarization, using [praatIO](https://github.com/timmahrt/praatIO)
 
 	* **To do**: apply volume normalization first
 
-5. Apply speech recognition to generate .txt transcripts with whisper_transcription.py, using [whisper.ai](https://github.com/openai/whisper)
+5. Apply speech recognition to generate .txt transcripts with [whisper_transcription.py](whisper_transcription.py), using [whisper.ai](https://github.com/openai/whisper)
 
 	* This is slow.
 	* whisper.ai installation: https://github.com/openai/whisper#setup
 
 6. Correct transcripts
 
-7. Apply forced alignment with run_mfa.py, using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
+7. Apply forced alignment with [run_mfa.py](run_mfa.py), using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
 
 	* MFA installation: https://montreal-forced-aligner.readthedocs.io/en/latest/getting_started.html
 

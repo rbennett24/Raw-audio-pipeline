@@ -22,11 +22,16 @@ for inputWav in wav_files:
     
     # print(result)
     
+    # Strip punctuation out, make lowercase, and remove leading/trailing spaces
     outputTranscription = result["text"]
+    
+    translation_table = str.maketrans("","",string.punctuation)
+    outputTranscription = outputTranscription.translate(translation_table).lower().strip()
 
     # Save unaligned transcript
     with open(inputWav.replace(".wav","").replace(".WAV","")+".txt", "w") as file:
         file.write(outputTranscription)
+
 
     ###############################
     # All of the following is commented out.

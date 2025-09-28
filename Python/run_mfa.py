@@ -41,9 +41,9 @@ if result == True:
 	print(ret.stdout.decode())
 
 
-# #######################
-# # TO EXTEND: MODEL TRAINING
-# #######################
+#######################
+# TO EXTEND: MODEL TRAINING
+#######################
 
 
 ############
@@ -53,10 +53,15 @@ result = messagebox.askyesno(title="Run validation?",
 
 if result == True:
 	# Open command line, start conda, force download of newest version of dictionary
-	command = "conda activate mfaaligner && mfa validate --clean " + inputPath + " " + mfadict + " " + mfamodel + " --speaker_characters " + spkPrefixLen
+	command = "conda activate mfaaligner && mfa validate --clean " + inputPath + " " + mfadict + " --speaker_characters " + spkPrefixLen
 
 	subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
+
+#######################
+# TO EXTEND: deal with out of dictionary words
+# https://montreal-forced-aligner.readthedocs.io/en/v3.0.7/user_guide/dictionary.html#text-normalization-and-dictionary-lookup
+#######################
 
 ############
 # Run alignment?

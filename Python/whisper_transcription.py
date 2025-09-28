@@ -8,6 +8,7 @@ import csv
 import os
 import glob
 from pathlib import Path
+from num2words import num2words
 
 path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
 wav_files = glob.glob(os.path.join(path+"mfa_input/", "*.wav")) # Not case sensitive
@@ -27,6 +28,8 @@ for inputWav in wav_files:
     
     translation_table = str.maketrans("","",string.punctuation)
     outputTranscription = outputTranscription.translate(translation_table).lower().strip()
+    outputTranscription = [ num2words(w) if w.isdigit() else w for w in outputTranscription.split() ] # Convert numbers
+    outputTranscription = ' '.join(outputTranscription)
 
     # Save unaligned transcript
     with open(inputWav.replace(".wav","").replace(".WAV","")+".txt", "w") as file:

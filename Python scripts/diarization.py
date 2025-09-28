@@ -8,7 +8,7 @@ import csv
 import os
 import glob
 
-# I have a Hugging Face token stored on my Desktop as an environmental variable.
+# I have a Hugging Face token stored on my desktop computer as an environmental variable.
 # We access it here, without publishing it in the code itself, for security reasons.
 # To get an HF token, go to https://huggingface.co/settings/tokens, and set fine grained
 # permissions to approve "Read access to contents of all public gated repos you can access".

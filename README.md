@@ -35,6 +35,7 @@ Goals:
 7. Apply forced alignment with [run_mfa.py](Python/run_mfa.py), using the [Montreal Forced Aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/)
 
 	* MFA installation: https://montreal-forced-aligner.readthedocs.io/en/latest/getting_started.html
+	* [run_mfa.py](Python/run_mfa.py) currently only works with pre-existing acoustic models. Implementation training is TBD.
 
 8. Correct alignments
 

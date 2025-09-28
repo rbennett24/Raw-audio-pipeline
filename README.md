@@ -9,7 +9,7 @@ Goals:
 * Other types of flexibility?
 **************
 
-0. If needed, convert mp3 files to .wav using (mp3_to_wav_converter.py)
+0. If needed, convert mp3 files to .wav using [mp3_to_wav_converter.py](mp3_to_wav_converter.py)
 
 1. Get raw audio (.wav format)
 

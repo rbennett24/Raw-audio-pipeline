@@ -27,7 +27,7 @@ Goals:
 
 5. Apply speech recognition to generate .txt transcripts with [whisper_transcription.py](Python/whisper_transcription.py), using [whisper.ai](https://github.com/openai/whisper)
 
-	* This is slow.
+	* This is slow. We need to look into faster methods (e.g. [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper)).
 	* whisper.ai installation: https://github.com/openai/whisper#setup
 
 6. Correct transcripts

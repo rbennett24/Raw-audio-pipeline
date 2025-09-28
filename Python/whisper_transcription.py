@@ -48,8 +48,8 @@ for inputWav in wav_files:
     # with open(tmpCSV, "w", encoding="utf-8") as file:
     #     file.write('start_time,end_time,label\n')
     #     for segment in result['segments']:
-    #         outText = ''.join(f"{word['start']},{word['end']},{word['text'].translate(translation_table)}\n" for word in segment['words'])
-    #         outTextClean = outText.replace(" ", "").lower()
+    #         outText = ''.join(f"{word['start'].strip()},{word['end'].strip()},{word['text'].translate(translation_table)}\n" for word in segment['words'])
+    #         outTextClean = outText.lower()
     #         file.write(outTextClean)
 
     # # Load the CSV data

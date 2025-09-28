@@ -28,7 +28,7 @@ for inputWav in wav_files:
     
     translation_table = str.maketrans("","",string.punctuation)
     outputTranscription = outputTranscription.translate(translation_table).lower().strip()
-    outputTranscription = [ num2words(w) if w.isdigit() else w for w in outputTranscription.split() ] # Convert numbers
+    outputTranscription = [ num2words(w) if w.isdigit() else w for w in outputTranscription.split() ] # Convert numbers to text
     outputTranscription = ' '.join(outputTranscription)
 
     # Save unaligned transcript

@@ -10,7 +10,7 @@ import glob
 from pathlib import Path
 from num2words import num2words
 
-path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
+path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
 wav_files = glob.glob(os.path.join(path+"mfa_input/", "*.wav")) # Not case sensitive
 
 for inputWav in wav_files:

@@ -24,7 +24,7 @@ import torch
 # pipeline.to(torch.device("cuda")) # CUDA needs to be installed from NVIDIA
 
 # Update path
-path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
+path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
 wav_files = glob.glob(os.path.join(path+"initial_recordings/", "*.wav")) # Not case sensitive
 
 for w in wav_files:
@@ -76,7 +76,7 @@ for w in wav_files:
     if os.path.exists(tmpCSV):
         try:
             os.remove(tmpCSV)
-            print(f"File '{tmpCSV}' deleted successfully.")
+            # print(f"File '{tmpCSV}' deleted successfully.") # Notifications not really needed.
         except OSError as e:
             print(f"Error deleting file '{tmpCSV}': {e}")
     else:

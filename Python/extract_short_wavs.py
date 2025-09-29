@@ -9,7 +9,7 @@ from praatio import praatio_scripts
 import glob
 
 # Update path
-path = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/"
+path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
 outputPath = join(path, "mfa_input/")
 
 if not os.path.exists(outputPath):

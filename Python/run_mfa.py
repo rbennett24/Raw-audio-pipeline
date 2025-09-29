@@ -7,7 +7,7 @@ from pathlib import Path
 mfadict = "english_us_arpa" # "english_us_mfa"
 mfamodel = "english_us_arpa" # "english_mfa"
 spkPrefixLen = "5"
-inputPath = "C:/Users/Tiamat/Dropbox/Research/Speech_corpora/charsiu_testing/mfa_input/"
+path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/mfa_input/"
 
 
 ############

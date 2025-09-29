@@ -25,7 +25,8 @@ import torch
 
 # Update path
 path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
-wav_files = glob.glob(os.path.join(path+"initial_recordings/", "*.wav")) # Not case sensitive
+os.chdir(path) # Set base path as working directory
+wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case sensitive
 
 for w in wav_files:
     inputWav = w

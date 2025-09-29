@@ -3,9 +3,9 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 
 **************
 To do right now:
-* Check out spacey-cleaner as a num2word alternative
-* Update file paths
 * Run FastTrack + R sample
+* Check out spacey-cleaner as a num2word alternative
+* Test pipeline on longer and messier files (e.g. Librivox recordings)
 **************
 
 **************

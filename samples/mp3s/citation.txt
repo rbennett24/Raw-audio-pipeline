@@ -1,0 +1,7 @@
+All recordings from https://accent.gmu.edu/
+
+I've removed the prefix "english" from all of these files.
+
+I just changed the number at the end of this URL to pick different speakers:
+
+https://accent.gmu.edu/browse_language.php?function=detail&speakerid=#######

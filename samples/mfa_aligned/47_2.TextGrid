@@ -122,10 +122,10 @@ item []:
             text = "bags" 
         intervals [28]:
             xmin = 8.38 
-            xmax = 8.65 
+            xmax = 8.64 
             text = "" 
         intervals [29]:
-            xmin = 8.65 
+            xmin = 8.64 
             xmax = 8.85 
             text = "and" 
         intervals [30]:
@@ -500,10 +500,10 @@ item []:
             text = "Z" 
         intervals [81]:
             xmin = 8.38 
-            xmax = 8.65 
+            xmax = 8.64 
             text = "" 
         intervals [82]:
-            xmin = 8.65 
+            xmin = 8.64 
             xmax = 8.77 
             text = "AE1" 
         intervals [83]:

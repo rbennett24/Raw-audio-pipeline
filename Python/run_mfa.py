@@ -4,12 +4,14 @@ from tkinter import messagebox
 from pathlib import Path
 import glob
 import os
+import shutil
 
 # Parameters
 mfadict = "english_us_arpa" # "english_us_mfa"
 mfamodel = "english_us_arpa" # "english_mfa"
 spkPrefixLen = "2"
 inputPath = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/"
+# os.chdir(inputPath) # Set base path as working directory
 
 
 ############
@@ -93,7 +95,8 @@ if result == True:
 
 		for w in wav_files:
 			newLocation = w.replace("mfa_input","mfa_aligned")
-			w.rename(newLocation)
+			print(w,newLocation)
+			shutil.move(w,newLocation)
 
 # Terminate GUI
 root.destroy()

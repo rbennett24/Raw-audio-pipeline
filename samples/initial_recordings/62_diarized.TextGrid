@@ -1,0 +1,46 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 21.934718750000002
+tiers? <exists>
+size = 1
+item []:
+	item [1]:
+		class = "IntervalTier"
+		name = "DetectedSpeech"
+		xmin = 0.0
+		xmax = 21.934718750000002
+		intervals: size = 8
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.6215937500000001
+				text = ""
+			intervals [2]:
+				xmin = 0.6215937500000001
+				xmax = 4.654718750000001
+				text = "SPEAKER_00"
+			intervals [3]:
+				xmin = 4.654718750000001
+				xmax = 4.82346875
+				text = ""
+			intervals [4]:
+				xmin = 4.82346875
+				xmax = 11.168468750000002
+				text = "SPEAKER_00"
+			intervals [5]:
+				xmin = 11.168468750000002
+				xmax = 11.84346875
+				text = ""
+			intervals [6]:
+				xmin = 11.84346875
+				xmax = 15.876593750000001
+				text = "SPEAKER_00"
+			intervals [7]:
+				xmin = 15.876593750000001
+				xmax = 16.33221875
+				text = ""
+			intervals [8]:
+				xmin = 16.33221875
+				xmax = 21.934718750000002
+				text = "SPEAKER_00"

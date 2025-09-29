@@ -10,12 +10,13 @@ import glob
 
 # Update path
 path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
-outputPath = join(path, "mfa_input/")
+os.chdir(path) # Set base path as working directory
+outputPath = "./mfa_input/"
 
 if not os.path.exists(outputPath):
     os.mkdir(outputPath)
 
-wav_files = glob.glob(os.path.join(path+"initial_recordings/", "*.wav")) # Not case sensitive
+wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case sensitive
 
 for wav in wav_files:
     # TO DO: normalize input .wav first.

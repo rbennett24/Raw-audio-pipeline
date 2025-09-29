@@ -1,0 +1,94 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 29.190968750000003
+tiers? <exists>
+size = 1
+item []:
+	item [1]:
+		class = "IntervalTier"
+		name = "DetectedSpeech"
+		xmin = 0.0
+		xmax = 29.190968750000003
+		intervals: size = 20
+			intervals [1]:
+				xmin = 0.0
+				xmax = 0.5372187500000001
+				text = ""
+			intervals [2]:
+				xmin = 0.5372187500000001
+				xmax = 1.83659375
+				text = "SPEAKER_00"
+			intervals [3]:
+				xmin = 1.83659375
+				xmax = 2.6297187500000003
+				text = ""
+			intervals [4]:
+				xmin = 2.6297187500000003
+				xmax = 5.80221875
+				text = "SPEAKER_00"
+			intervals [5]:
+				xmin = 5.80221875
+				xmax = 6.764093750000001
+				text = ""
+			intervals [6]:
+				xmin = 6.764093750000001
+				xmax = 9.126593750000001
+				text = "SPEAKER_00"
+			intervals [7]:
+				xmin = 9.126593750000001
+				xmax = 10.004093750000003
+				text = ""
+			intervals [8]:
+				xmin = 10.004093750000003
+				xmax = 10.695968750000002
+				text = "SPEAKER_00"
+			intervals [9]:
+				xmin = 10.695968750000002
+				xmax = 11.10096875
+				text = ""
+			intervals [10]:
+				xmin = 11.10096875
+				xmax = 12.88971875
+				text = "SPEAKER_00"
+			intervals [11]:
+				xmin = 12.88971875
+				xmax = 13.649093750000002
+				text = ""
+			intervals [12]:
+				xmin = 13.649093750000002
+				xmax = 16.04534375
+				text = "SPEAKER_00"
+			intervals [13]:
+				xmin = 16.04534375
+				xmax = 16.70346875
+				text = ""
+			intervals [14]:
+				xmin = 16.70346875
+				xmax = 19.032218750000002
+				text = "SPEAKER_00"
+			intervals [15]:
+				xmin = 19.032218750000002
+				xmax = 19.47096875
+				text = ""
+			intervals [16]:
+				xmin = 19.47096875
+				xmax = 21.715343750000002
+				text = "SPEAKER_00"
+			intervals [17]:
+				xmin = 21.715343750000002
+				xmax = 21.91784375
+				text = ""
+			intervals [18]:
+				xmin = 21.91784375
+				xmax = 25.934093750000002
+				text = "SPEAKER_00"
+			intervals [19]:
+				xmin = 25.934093750000002
+				xmax = 26.575343750000002
+				text = ""
+			intervals [20]:
+				xmin = 26.575343750000002
+				xmax = 29.190968750000003
+				text = "SPEAKER_00"

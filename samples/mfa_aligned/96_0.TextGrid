@@ -816,10 +816,10 @@ item []:
             text = "OW0" 
         intervals [120]:
             xmin = 12.17 
-            xmax = 12.24 
+            xmax = 12.25 
             text = "N" 
         intervals [121]:
-            xmin = 12.24 
+            xmin = 12.25 
             xmax = 12.32 
             text = "IY1" 
         intervals [122]:

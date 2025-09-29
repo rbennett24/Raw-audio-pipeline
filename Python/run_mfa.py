@@ -92,10 +92,22 @@ if result == True:
 	if resultMove == True:
 		# Copy all .wav files from input directory to output directory:
 		wav_files = glob.glob(os.path.join(inputPath, "*.wav")) # Not case sensitive
-
 		for w in wav_files:
 			newLocation = w.replace("mfa_input","mfa_aligned")
 			shutil.move(w,newLocation)
+
+		# Sequester unaligned .wav files
+		unalignedPath = "./mfa_aligned/unaligned_wavs/"
+		Path(unalignedPath).mkdir(parents=True, exist_ok=True)
+
+		wav_files = glob.glob(os.path.join(inputPath.replace("mfa_input","mfa_aligned"), "*.wav")) # Not case sensitive
+		for w in wav_files:
+			if os.path.exists(w.replace(".wav",".TextGrid")):
+				pass
+			else: 
+				print("Unaligned .wav file: " + w)
+				shutil.move(w,w.replace("mfa_aligned","/mfa_aligned/unaligned/"))
+
 
 # Terminate GUI
 root.destroy()

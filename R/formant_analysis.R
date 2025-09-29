@@ -1,13 +1,6 @@
-######################################
-# Look here to remind yourself how to do this:
-# C:\Users\Tiamat\Dropbox\Research\Irish\Irish_ultrasound_shared\Scripts\Praat scripts\Carnie_volume\Formants_Carnie\Praat_input
-######################################
-
-
- 
-# 	* For fun, let's do classic vowel space stuff (maybe for each speaker, and as a function of stress and/or duration) and see what it looks like with zero hand correction.
+# For fun, let's do classic vowel space stuff (maybe for each speaker, and as a function of stress and/or duration) and see what it looks like with zero hand correction.
 # 	
-# 	* Use Fastrak for this? That seems good, though you want to speed it up by stripping out everything except the vowels, right? Or does Fastrak not bother with sounds it doesn't identify as vowels? See https://github.com/santiagobarreda/FastTrack/blob/master/Fast%20Track/functions/file_5_extractVowelswithTG.praat
+# We're going to use the homebrewed formant measurements, not FastTrack
 
 
 ######################################
@@ -20,8 +13,9 @@ library(stringr)
 ######################################
 # Set working directory
 ######################################
-computer = ""
-setwd(paste0("C:/Users/",computer,"")) # Where files are stored.
+computer = "Tiamat"
+setwd(paste0("C:/Users/",computer,"Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/")) # Where files are stored.
+
 
 
 ######################################
@@ -46,88 +40,11 @@ showColor<-function(pal){
 ######################################
 
 # Formant measurements produced by a handmade script:
-# formants.homebrewed <- read.csv("FACL_F2_tracks_all_spkrs.txt",sep="\t")
+formants.homebrewed <- read.csv("formant_tracks.txt",sep="\t")
 
+formants <- formants.homebrewed
 
-######################################
-# Compare FastTrak data to the hand-extracted formant data, and merge as desired.
-######################################
-# This is time-intensive, so unless you want to actually work with the original CSV files for some reason, just load this:
-load("FastTrack_formant_data.Rdata")
-
-############################################################################
-# Note that the dataframe which is loaded here (<formants>) includes the log-additive regression
-# normalized formant values as well.
-
-# library(vroom)
-# formant.csv.files <- fs::dir_ls(path = "csvs/",glob="*.csv")
-# # formant.csv.files
-# csvs<-vroom(formant.csv.files,id="filename",col_select=c(time,f1,f2,f3))
-# 
-# # Add normalized time
-# csvs <- csvs %>% group_by(filename) %>% mutate(step = ((time-min(time))/(max(time)-min(time))*100))
-# 
-# # Pivot longer
-# csvs <- csvs %>% pivot_longer(cols=c(f1,f2,f3),names_to = "formant",values_to="freq")
-# csvs <- csvs %>% mutate(formant = toupper(formant))
-# csvs
-# 
-# # Clean up filenames
-# csvs <- csvs %>% mutate(filename = gsub("_[[:digit:]]*$","",fs::path_ext_remove(basename(filename))))
-# csvs
-# 
-# # Get interval code from file info CVS
-# fileInfo <- vroom("file_information.csv")
-# 
-# fileInfo <- fileInfo %>% mutate(file = gsub("_[[:digit:]]*.wav$","",file)) %>% rename("filename" = "file")
-# 
-# csvs <- left_join(csvs,fileInfo %>% select(filename,label),by="filename") %>%
-#                                     rename("vowel.code" = "label") %>%
-#                                     mutate(token.code = paste0(vowel.code,"-",filename),
-#                                            speaker = gsub("_list[[:digit:]]*_sent[[:digit:]]*$","",filename)
-#                                            )
-# csvs
-
-
-# # Compare formant measurements across methods
-# nrow(csvs)
-# nrow(formants.homebrewed)
-# qqplot(csvs$freq,formants.homebrewed$freq)
-
-
-# # Use the Fast Track data:
-# formants <- csvs
-############################################################################
-
-
-
-######################################
-# Clean up some errors in TextGrid coding
-######################################
-# The following is only necessary if you *don't* call load("FastTrack_formant_data.Rdata") above.
-
-############################################################################
-# 
-# bad.codes<-unique(formants$vowel.code[!(str_detect(formants$vowel.code, '[0jw][aiu][ptkbdg][jw][[:digit:]]'))])
-# bad.codes
-# 
-# # Go clean up these TextGrids
-# formants %>% filter(vowel.code %in% bad.codes) %>% distinct(token.code)
-# 
-# # Ulster 1, 2,3, say pˠibˠ instead of pʲibˠ
-# # jibw => wibw
-# formants.UL <- formants %>% filter(speaker %in% c("UL-subject1","UL-subject2","UL-subject3")) %>% 
-#              mutate(vowel.code = str_replace(vowel.code,'jibw', 'wibw')) %>% 
-#              mutate(token.code = str_replace(token.code,'jibw', 'wibw'))
-# 
-# formants.notUL <- formants %>% filter(!(speaker %in% c("UL-subject1","UL-subject2","UL-subject3")))
-# 
-# formants <- rbind(formants.notUL,formants.UL)
-# 
-# rm(formants.notUL,formants.UL)
-# 
-# 
-# 
+ 
 # ######################################
 # # Clean up factors
 # ######################################

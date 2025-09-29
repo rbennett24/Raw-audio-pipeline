@@ -55,6 +55,6 @@ Goals:
 
 9. Analyze your data
 
-	* For the sample analysis provided here, we use [FastTrack](https://github.com/santiagobarreda/FastTrack) to automatically track formants. This works off the shelf because we used an ARPABET transcription in MFA for English.
+	* For the sample analysis provided here, we use the Praat script [formant_extraction.praat](Praat/formant_extraction.praat) to track formants.
 	
 	* We also use the R file [formant_analysis.R](R/formant_analysis.R) to plot resulting formant values and do other analyses.

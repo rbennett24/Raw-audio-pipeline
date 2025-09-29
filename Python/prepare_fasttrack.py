@@ -16,7 +16,7 @@ wav_files = glob.glob(os.path.join("", "*.wav")) # Not case sensitive
 
 for w in wav_files:
 	newLocation = "./sounds/" + w
-	shutil.move(w,newLocation)
+	shutil.copy(w,newLocation)
 
 
 ############
@@ -25,3 +25,4 @@ for w in wav_files:
 
 # Load TextGrids, strip them of all intervals *except* vowel intervals, then
 # copy them over.
+# Fast Track is intended to analyze sound files that contain only a single vowel sound, or vowel nucleus.

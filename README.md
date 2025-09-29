@@ -5,7 +5,9 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 To do right now:
 * Integrate out of dictionary processing, maybe with g2p?
 	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems.
-	
+
+* Maybe instead of FastTrack, use your homebrewed formant measurement script, because "Fast Track is intended to analyze sound files that contain only a single vowel sound, or vowel nucleus."
+
 * Run FastTrack + R sample
 	* https://github.com/santiagobarreda/FastTrack/wiki/Preparing-sounds
 	* https://github.com/santiagobarreda/FastTrack/wiki/How-to-analyze-a-folder

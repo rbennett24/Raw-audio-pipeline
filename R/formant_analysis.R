@@ -1,4 +1,16 @@
 ######################################
+# Look here to remind yourself how to do this:
+# C:\Users\Tiamat\Dropbox\Research\Irish\Irish_ultrasound_shared\Scripts\Praat scripts\Carnie_volume\Formants_Carnie\Praat_input
+######################################
+
+
+ 
+# 	* For fun, let's do classic vowel space stuff (maybe for each speaker, and as a function of stress and/or duration) and see what it looks like with zero hand correction.
+# 	
+# 	* Use Fastrak for this? That seems good, though you want to speed it up by stripping out everything except the vowels, right? Or does Fastrak not bother with sounds it doesn't identify as vowels? See https://github.com/santiagobarreda/FastTrack/blob/master/Fast%20Track/functions/file_5_extractVowelswithTG.praat
+
+
+######################################
 # Packages
 ######################################
 library(tidyverse)

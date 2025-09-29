@@ -5,9 +5,10 @@ from pathlib import Path
 
 # Update path
 path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
-mp3_files = glob.glob(os.path.join(path+"mp3s/", "*.mp3")) # Not case sensitive
+os.chdir(path) # Set base path as working directory
+mp3_files = glob.glob(os.path.join("./mp3s/", "*.mp3")) # Not case sensitive
 
-outputPath = path + "initial_recordings/"
+outputPath = "./initial_recordings/"
 if not os.path.exists(outputPath):
     os.mkdir(outputPath)
 

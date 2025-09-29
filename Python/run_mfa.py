@@ -2,12 +2,14 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox
 from pathlib import Path
+import glob
+import os
 
 # Parameters
 mfadict = "english_us_arpa" # "english_us_mfa"
 mfamodel = "english_us_arpa" # "english_mfa"
-spkPrefixLen = "5"
-path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/mfa_input/"
+spkPrefixLen = "2"
+inputPath = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/"
 
 
 ############
@@ -19,6 +21,7 @@ result = messagebox.askyesno(title="Download dictionary file?",
 								   message=("Do you want to download and update the %s dictionary model?" % mfadict))
 
 if result == True:
+	print("Upgrading .dict file...")
 	# Open command line, start conda, force download of newest version of dictionary
 	command = "conda activate mfaaligner && mfa model download dictionary " + mfadict + " --ignore_cache"
 
@@ -33,6 +36,7 @@ result = messagebox.askyesno(title="Download acoustic model?",
 								   message=("Do you want to download and update the %s acoustic model?" % mfamodel))
 
 if result == True:
+	print("Upgrading acoustic model...")
 	# Open command line, start conda, force download of newest version of acoustic model
 	command = "conda activate mfaaligner && mfa model download acoustic " + mfamodel + " --ignore_cache"
 
@@ -49,7 +53,7 @@ if result == True:
 ############
 # Run validation?
 result = messagebox.askyesno(title="Run validation?",
-								   message=("Do you want to run validation before aligning"))
+								   message=("Do you want to run validation before aligning?"))
 
 if result == True:
 	# Open command line, start conda, force download of newest version of dictionary
@@ -77,6 +81,19 @@ if result == True:
 
 	subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
+
+	############
+	# Move .wav files
+	resultMove = messagebox.askyesno(title="Move .wav files?",
+									   message=("Do you want to move the input .wav files to the folder which contains the aligned .TextGrids?"))
+
+	if resultMove == True:
+		# Copy all .wav files from input directory to output directory:
+		wav_files = glob.glob(os.path.join(inputPath, "*.wav")) # Not case sensitive
+
+		for w in wav_files:
+			newLocation = w.replace("mfa_input","mfa_aligned")
+			w.rename(newLocation)
 
 # Terminate GUI
 root.destroy()

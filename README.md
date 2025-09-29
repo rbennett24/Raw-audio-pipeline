@@ -2,6 +2,13 @@
 Scripts for processing raw, untranscribed audio to time-aligned word- and segment-level annotations.
 
 **************
+To do right now:
+* Check out spacey-cleaner as a num2word alternative
+* Update file paths
+* Run FastTrack + R sample
+**************
+
+**************
 Goals:
 * Extend beyond English
 * Connect parts of the pipeline together as single-step processes whenever possible.
@@ -44,6 +51,6 @@ Goals:
 
 9. Analyze your data
 
-	* For fun, let's do classic vowel space stuff (maybe for each speaker, and as a function of stress and/or duration) and see what it looks like with zero hand correction.
+	* For the sample analysis provided here, we use [FastTrack](https://github.com/santiagobarreda/FastTrack) to automatically track formants. This works off the shelf because we used an ARPABET transcription in MFA for English.
 	
-	* Use Fastrak for this? That seems good, though you want to speed it up by stripping out everything except the vowels, right? Or does Fastrak not bother with sounds it doesn't identify as vowels? See https://github.com/santiagobarreda/FastTrack/blob/master/Fast%20Track/functions/file_5_extractVowelswithTG.praat
+	* We also use the R file [formant_analysis.R](R/formant_analysis.R) to plot resulting formant values and do other analyses.

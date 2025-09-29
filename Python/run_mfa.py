@@ -95,7 +95,6 @@ if result == True:
 
 		for w in wav_files:
 			newLocation = w.replace("mfa_input","mfa_aligned")
-			print(w,newLocation)
 			shutil.move(w,newLocation)
 
 # Terminate GUI

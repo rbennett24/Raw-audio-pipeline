@@ -82,10 +82,10 @@ item []:
             text = "store" 
         intervals [18]:
             xmin = 4.37 
-            xmax = 4.83 
+            xmax = 4.85 
             text = "" 
         intervals [19]:
-            xmin = 4.83 
+            xmin = 4.85 
             xmax = 5.18 
             text = "six" 
         intervals [20]:
@@ -110,10 +110,10 @@ item []:
             text = "peas" 
         intervals [25]:
             xmin = 6.88 
-            xmax = 7.24 
+            xmax = 7.22 
             text = "" 
         intervals [26]:
-            xmin = 7.24 
+            xmin = 7.22 
             xmax = 7.67 
             text = "five" 
         intervals [27]:
@@ -520,10 +520,10 @@ item []:
             text = "R" 
         intervals [48]:
             xmin = 4.37 
-            xmax = 4.83 
+            xmax = 4.85 
             text = "" 
         intervals [49]:
-            xmin = 4.83 
+            xmin = 4.85 
             xmax = 4.99 
             text = "S" 
         intervals [50]:
@@ -608,10 +608,10 @@ item []:
             text = "Z" 
         intervals [70]:
             xmin = 6.88 
-            xmax = 7.24 
+            xmax = 7.22 
             text = "" 
         intervals [71]:
-            xmin = 7.24 
+            xmin = 7.22 
             xmax = 7.34 
             text = "F" 
         intervals [72]:

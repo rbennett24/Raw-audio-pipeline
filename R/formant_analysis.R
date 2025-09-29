@@ -1,21 +1,18 @@
-# For fun, let's do classic vowel space stuff (maybe for each speaker, and as a function of stress and/or duration) and see what it looks like with zero hand correction.
-# 	
-# We're going to use the homebrewed formant measurements, not FastTrack
-
-
 ######################################
 # Packages
 ######################################
 library(tidyverse)
 library(stringr)
-
+library(ragg)
 
 ######################################
 # Set working directory
 ######################################
 computer = "Tiamat"
+
 setwd(paste0("C:/Users/",computer,"/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/")) # Where files are stored.
 
+outDir<-paste0("C:/Users/",computer,"/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/") # Where files are saved.
 
 ######################################
 # Choose a colorblind friendly palette
@@ -62,6 +59,8 @@ formants <- formants %>% mutate(vqual = substr(vowel.code,1,2),
 summary(factor(formants$stress))
 summary(factor(formants$vqual))
 
+formants <- formants %>% filter(stress > 0) # Primary/secondary stress
+
 formants$vqual <- recode(formants$vqual,
                           "AA" = "ɑ",
                           "AE" = "æ",
@@ -89,27 +88,38 @@ formants <- formants %>% pivot_wider(names_from = formant,values_from=freq)
 formants <- formants %>% mutate(F1.norm=F1/F3,
                                   F2.norm=F2/F3)
 
-midpoints <- formants %>% filter(step == 15)
-midpoints <- midpoints %>% group_by(speaker,vqual,stress) %>% summarize_at(c("F1.norm","F2.norm"),mean) # I powerfully do not understand why simple summarize() doesn't work here
+midpoints <- formants %>% filter(step == median(step,na.rm=T))
+midpoints <- midpoints %>% group_by(speaker,vqual) %>% summarize_at(c("F1.norm","F2.norm"),mean) # I powerfully do not understand why simple summarize() doesn't work here
 
-raw.formants.spk<-ggplot(data = midpoints) + 
-  geom_point(aes(x=F2.norm,y=F1.norm,color=vqual))+
+midpoints.monop <- midpoints %>% filter(str_length(vqual)==1) # Monophthongs only
+
+formants.spk<-ggplot(data = midpoints.monop) + 
+  geom_label(aes(x=F2.norm,y=F1.norm,color=vqual,label=vqual),alpha=0.4)+
   scale_y_reverse()+
   scale_x_reverse()+
-  theme_bw(base_size = 24)+
+  theme_bw(base_size = 12)+
   theme(axis.text = element_text(size=12))+
-  facet_grid(.~stress)
+  facet_wrap(.~speaker)+
+  guides(color="none")
 
-raw.formants.spk
+formants.spk
+
+
+output_file<-paste0(outDir,"sample_formants.png")
+agg_png(file=output_file,
+        width=9,height=6,units="in",
+        res=250)
+  print(formants.spk)
+dev.off()
 
 
 
-# Look at some trajectories
-raw.formants.spk<-ggplot(data = formants %>% filter(stress==1))+
-  geom_smooth(aes(x=step,y=F1.norm,color=speaker,group=speaker))+
-  scale_y_reverse()+
-  theme_bw(base_size = 24)+
-  theme(axis.text = element_text(size=12))+
-  facet_grid(.~vqual)
-
-raw.formants.spk
+# # Look at some trajectories
+# raw.formants.spk<-ggplot(data = formants %>% filter(stress==1))+
+#   geom_smooth(aes(x=step,y=F1.norm,color=speaker,group=speaker))+
+#   scale_y_reverse()+
+#   theme_bw(base_size = 24)+
+#   theme(axis.text = element_text(size=12))+
+#   facet_wrap(.~vqual)
+# 
+# raw.formants.spk

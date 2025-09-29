@@ -40,7 +40,7 @@ Goals:
 
 	* This is slow. We need to look into faster methods (e.g. [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper)).
 	
-	* Also, need to **deal with punctuation and numerals in a more effective way**, since these may cause issues with forced alignment later one.
+	* Also, need to **deal with punctuation and numerals in a more effective way**, since these may cause issues with forced alignment later on.
 	
 	* whisper.ai installation: https://github.com/openai/whisper#setup
 

@@ -3,21 +3,14 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 
 **************
 To do right now:
-* Remove FastTrack from the Praat pipeline, and replace it with the new fasttrackpy package (possibly in conjunction with aligned-textgrid), which is MUCH faster and better integrated. This has now been implemented as a command line call in [fasttrack_alignment.py](Python/fasttrack_alignment.py)
-
-	* https://fasttrackiverse.github.io/fasttrackpy/
-	* https://jofrhwld.github.io/blog/posts/2024/02/2024-02-16_fs-atg/
-
 * Integrate out of dictionary processing, maybe with g2p?
-	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems (this is now implemented).
+	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems (this is now implemented in [run_mfa.py](Python/run_mfa.py)).
 
 * Check out [spacey-cleaner](https://github.com/Ce11an/spacy-cleaner) as a num2word alternative, and as a different method for removing punctuation, across .py files.
 
 * Test pipeline on longer and messier files (e.g. Librivox recordings)
 
-* Improve file folder organization schemes, and update scripts as appropriate.
-
-**************
+* Improve file folder organization schemes, and update paths in scripts as appropriate.
 
 **************
 Goals:
@@ -67,6 +60,8 @@ Goals:
 	* You can measure formants in this data with:
 	
 		* [fasttrackpy](https://github.com/FastTrackiverse/fasttrackpy), implemented in [fasttrack_alignment.py](Python/fasttrack_alignment.py)
+		
+			* See also https://jofrhwld.github.io/blog/posts/2024/02/2024-02-16_fs-atg/
 	
 		* [FastTrak](https://github.com/santiagobarreda/FastTrack) in Praat. Follow the instructions at:
 			* https://github.com/santiagobarreda/FastTrack/wiki/Extract-vowels-using-TextGrids

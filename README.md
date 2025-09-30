@@ -3,7 +3,7 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 
 **************
 To do right now:
-* Remove FastTrack from the Praat pipeline, and replace it with the new fasttrackpy package (possibly in conjunction with aligned-textgrid), which is MUCH faster and better integrated.
+* Remove FastTrack from the Praat pipeline, and replace it with the new fasttrackpy package (possibly in conjunction with aligned-textgrid), which is MUCH faster and better integrated. This has now been implemented as a command line call in [fasttrack_alignment.py](Python/fasttrack_alignment.py)
 
 	* https://fasttrackiverse.github.io/fasttrackpy/
 	* https://jofrhwld.github.io/blog/posts/2024/02/2024-02-16_fs-atg/

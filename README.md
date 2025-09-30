@@ -3,6 +3,11 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 
 **************
 To do right now:
+* Remove FastTrack from the Praat pipeline, and replace it with the new fasttrackpy package (possibly in conjunction with aligned-textgrid), which is MUCH faster and better integrated.
+
+	* https://fasttrackiverse.github.io/fasttrackpy/
+	* https://jofrhwld.github.io/blog/posts/2024/02/2024-02-16_fs-atg/
+
 * Integrate out of dictionary processing, maybe with g2p?
 	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems.
 
@@ -55,6 +60,14 @@ Goals:
 
 9. Analyze your data
 
-	* For the sample analysis provided here, we use the Praat script [formant_extraction.praat](Praat/formant_extraction.praat) to track formants.
+	* Here, we're doing a toy analysis of vowel spaces.
+	
+	* You can measure formants in this data with:
+	
+		* [FastTrak](https://github.com/santiagobarreda/FastTrack). Follow the instructions at:
+			* https://github.com/santiagobarreda/FastTrack/wiki/Extract-vowels-using-TextGrids
+			* https://github.com/santiagobarreda/FastTrack/wiki/How-to-analyze-a-folder
+			
+		* A Praat script like [formant_extraction.praat](Praat/formant_extraction.praat).
 	
 	* We also use the R file [formant_analysis.R](R/formant_analysis.R) to plot resulting formant values and do other analyses.

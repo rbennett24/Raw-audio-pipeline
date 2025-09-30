@@ -9,11 +9,13 @@ To do right now:
 	* https://jofrhwld.github.io/blog/posts/2024/02/2024-02-16_fs-atg/
 
 * Integrate out of dictionary processing, maybe with g2p?
-	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems.
+	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems (this is now implemented).
 
 * Check out [spacey-cleaner](https://github.com/Ce11an/spacy-cleaner) as a num2word alternative, and as a different method for removing punctuation, across .py files.
 
 * Test pipeline on longer and messier files (e.g. Librivox recordings)
+
+* Improve file folder organization schemes, and update scripts as appropriate.
 
 **************
 
@@ -64,7 +66,9 @@ Goals:
 	
 	* You can measure formants in this data with:
 	
-		* [FastTrak](https://github.com/santiagobarreda/FastTrack). Follow the instructions at:
+		* [fasttrackpy](https://github.com/FastTrackiverse/fasttrackpy), implemented in [fasttrack_alignment.py](Python/fasttrack_alignment.py)
+	
+		* [FastTrak](https://github.com/santiagobarreda/FastTrack) in Praat. Follow the instructions at:
 			* https://github.com/santiagobarreda/FastTrack/wiki/Extract-vowels-using-TextGrids
 			* https://github.com/santiagobarreda/FastTrack/wiki/How-to-analyze-a-folder
 			

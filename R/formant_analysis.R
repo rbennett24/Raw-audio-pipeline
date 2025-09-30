@@ -98,55 +98,39 @@ qqplot(fasttrack.formants$F2,
        formants.homebrewed$F2)
 
 
+################
+# Add normalized time
+fasttrack.formants <- fasttrack.formants %>% group_by(id) %>% mutate(step = ((time-min(time))/(max(time)-min(time))*100))
 
-# # Pivot longer
-# fasttrack.formants <- fasttrack.formants %>% pivot_longer(cols=c(f1,f2,f3),names_to = "formant",values_to="freq")
-# fasttrack.formants <- fasttrack.formants %>% mutate(formant = toupper(formant))
-# fasttrack.formants
-
-
- 
-# 
-# ################
-# # Add normalized time
-# fasttrack.formants <- fasttrack.formants %>% group_by(id) %>% mutate(step = ((time-min(time))/(max(time)-min(time))*100))
-# 
-# # Rename some columns
-# fasttrack.formants$phone <- fasttrack.formants$label
-# fasttrack.formants <- fasttrack.formants %>% select(-label)
-# 
-# fasttrack.formants$token.code <- fasttrack.formants$file
-# fasttrack.formants <- fasttrack.formants %>% select(-file)
-# 
-# save(file="FastTrack_formant_data.Rdata",fasttrack.formants)
-# 
-# ################################################## #################################################
-# 
-# 
-# fasttrack.formants
+save(file="FastTrack_formant_data.Rdata",fasttrack.formants)
 
 
- 
-# Use the Fast Track data:
-formants <- fasttrack.formants
-formants
+######################################
+# We decide to use the smoothed formant values.
+fasttrack.formants <- fasttrack.formants %>% select(-c(F1,F2,F3)) %>% # Drop raw formants
+                      pivot_longer(c(F1_s,F2_s,F3_s),
+                                   names_to = "formant.smoothed",
+                                   values_to = "freq"
+                                   )
 
-###########################################################################
+fasttrack.formants <- fasttrack.formants %>% mutate(formant.smoothed = case_match(formant.smoothed,"F1_s" ~ "F1","F2_s" ~ "F2","F3_s" ~ "F3"))
 
 
 ######################################
 # Get some summary stats
 ######################################
-formants %>% group_by(formant) %>% summarize(mean=mean(freq,na.rm=T),
+formants <- fasttrack.formants
+formants
+
+formants %>% group_by(formant.smoothed) %>% summarize(mean=mean(freq,na.rm=T),
                                              median=median(freq,na.rm=T))
 
-formants %>% group_by(pone,formant) %>% summarize(mean=mean(freq,na.rm=T),
+formants %>% group_by(phone,formant.smoothed) %>% summarize(mean=mean(freq,na.rm=T),
                                                   median=median(freq,na.rm=T))
 
 
 ######################################
 # Add some factors
-
 formants <- formants %>% mutate(vqual = substr(phone,1,2),
                                 stress = substr(phone,3,3),
                                 )
@@ -173,36 +157,39 @@ formants$vqual <- recode(formants$vqual,
                           "UW" = "i"
                           )
 
-formants <- formants %>% mutate(vqual = factor(vqual),
-                                stress = factor(stress),
-                                speaker = factor(as.character(speaker)),
-                                token.code = factor(token.code),
-                                )
+formants$speaker <- str_split(formants$file_name,"_",simplify=T)[,1]
+  
+formants <- formants %>% mutate_at(c("vqual","stress","speaker"),as.factor)
 
-formants <- formants %>% pivot_wider(names_from = formant,values_from=freq)
+formants <- formants %>% pivot_wider(names_from = formant.smoothed,values_from=freq)
 formants <- formants %>% mutate(F1.norm=F1/F3,
                                 F2.norm=F2/F3)
+formants
 
-midpoints <- formants %>% filter(step == median(step,na.rm=T))
-midpoints <- midpoints %>% group_by(speaker,vqual) %>% summarize_at(c("F1.norm","F2.norm","F1","F2","F3"),mean) # I powerfully do not understand why simple summarize() doesn't work here
+
+# Take average values over middle 10%
+midpoints <- formants %>% group_by(speaker,vqual) %>% filter(step >= 45 &  step <=55) %>% summarize_at(c("F1","F2","F3","F1.norm","F2.norm"),mean)
+midpoints
+
 
 midpoints.monop <- midpoints %>% filter(str_length(vqual)==1) # Monophthongs only
 
-formants.spk<-ggplot(data = midpoints.monop) + 
+formants.spk <- ggplot(data = midpoints.monop) + 
   geom_label(aes(x=F2,y=F1,color=vqual,label=vqual),alpha=0.4)+
-  scale_y_reverse()+
-  scale_x_reverse()+
+  scale_y_reverse(expand = expansion(mult = c(0.2, 0.2))) + # wider axis padding
+  scale_x_reverse(expand = expansion(mult = c(0.1, 0.1))) + # wider axis padding
   theme_bw(base_size = 12)+
   theme(axis.text = element_text(size=12))+
-  facet_wrap(.~speaker)+
-  guides(color="none")
+  facet_wrap(.~speaker,ncol=3)+
+  guides(color="none")+
+  coord_fixed()
 
-formants.spk
+# formants.spk
 
 
 output_file<-paste0(outDir,"sample_formants.png")
 agg_png(file=output_file,
-        width=9,height=6,units="in",
+        width=10,height=7,units="in",
         res=250)
   print(formants.spk)
 dev.off()

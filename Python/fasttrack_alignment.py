@@ -11,7 +11,8 @@ import pandas as pd
 # though there are more 'Pythonic' options (https://fasttrackiverse.github.io/fasttrackpy/usage/pythonic_use.html)
 
 ###########
-# TO DO: CODE THAT MOVES FILES FROM INPUT TO A "corpus" SUBFOLDER FIRST, so that input files are successfully isolated from the subfolder problem?
+# TO DO: CODE THAT MOVES FILES FROM INPUT TO A "corpus" SUBFOLDER FIRST,
+# so that input files are successfully isolated from the subfolder problem noted just below.
 ###########
 
 # Your corpus should be in a folder *without any other subfolders*. Otherwise, some kind of weird access problems result.

@@ -18,8 +18,9 @@ import pandas as pd
 corpus_path = Path("C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/","corpus")
 
 all_vowels = process_corpus(corpus_path)
+
 ###########
-# To do: improve formatting of output
+# To do: improve formatting of output before saving. Right now it's not functional.
 ###########
 
 big_df = pl.concat(

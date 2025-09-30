@@ -42,62 +42,74 @@ showColor<-function(pal){
 # Read in data
 ######################################
 
-# Formant measurements produced by a handmade script:
+# Formant measurements produced by a handmade script
+# Note that this does not include filenames or word-level coding right now.
 formants.homebrewed <- read.csv("formant_tracks.txt",sep="\t") %>% as_tibble()
 formants.homebrewed$phone <- formants.homebrewed$vowel.code
 formants.homebrewed <- formants.homebrewed %>% select(-vowel.code)
 
+
 ######################################
-# Compare FastTrak data to the hand-extracted formant data, and merge as desired.
+# Compare FastTrak data to the hand-extracted formant data.
 ######################################
 fasttrack.formants <- vroom("./corpus/fasttrack.csv") %>% select(c(F1,F2,F3,
                                                                    F1_s,F2_s,F3_s, # Smoothed formant values
                                                                    time,
                                                                    file_name,id,group,
                                                                    label))
+
+# Make non-numeric columns factors
+fasttrack.formants <- fasttrack.formants %>% mutate_at(c("file_name","id","group","label"),as.factor)
+fasttrack.formants <- fasttrack.formants %>% rename("phone" = "label")
 fasttrack.formants
+
+# Read in .TextGrid info, and merge
+fasttrack.formants.tg <- vroom("./corpus/fasttrack_TextGrid_data.csv") %>% mutate_all(as.factor)
+
+summary(fasttrack.formants$phone) # Just vowel intervals
+summary(fasttrack.formants.tg$phone) # All intervals
+
+summary(subset(fasttrack.formants,!(id %in% unique(fasttrack.formants.tg$id)))) # No missing IDs
+
+# Left join formant measurements
+fasttrack.formants <- left_join(fasttrack.formants,fasttrack.formants.tg)
+rm(fasttrack.formants.tg)
+
+
+###########
+# Compare different formant measurement techniques
+
+# Pivot wider to compare
+formants.homebrewed <- formants.homebrewed %>% pivot_wider(names_from = formant,values_from = freq)
 formants.homebrewed
 
+fasttrack.formants
 
-# This is time-intensive, so unless you want to actually work with the original CSV files for some reason, just load this:
-# # load("FastTrack_formant_data.Rdata")
-# 
-# ################################################## #################################################
-# #  Note that the dataframe which is loaded here (<formants>) includes the log-additive regression
-# # normalized formant values as well.
-# 
-# formant.csv.files <- fs::dir_ls(path = "csvs/",glob="*.csv")
-# csvs<-vroom(formant.csv.files,id="filename")
-# csvs
-# 
-# csvs <- csvs %>% select(c(time,f1,f2,f3,filename))
-# csvs <- csvs %>% mutate(file = sub(".csv","",filename))
-# csvs <- csvs %>% mutate(file = sub("csvs/","",file)) %>% select(-c(filename))
-# csvs
-# 
-# # Get interval code from file info CVS
-# fileInfo <- vroom("file_information.csv")
-# fileInfo
-# 
-# fileInfo <- fileInfo %>% mutate(file = gsub("([[:digit:]]_)*.wav$","",file))
-# fileInfo
-# 
-# 
-# fasttrack.formants <- left_join(csvs,(fileInfo %>% select(file,label,number)),by="file")
-# fasttrack.formants$fileTMP <- fasttrack.formants$file
-# fasttrack.formants <- fasttrack.formants %>% separate(fileTMP,into=c("speaker","filenum","vnum.infile"),sep="_") %>% select(-c(filenum,vnum.infile))
-# 
-# fasttrack.formants
-# 
-# 
-# ################
-# # Add normalized time
-# fasttrack.formants <- fasttrack.formants %>% group_by(file) %>% mutate(step = ((time-min(time))/(max(time)-min(time))*100))
-# 
+# Compare formant measurements across methods
+nrow(fasttrack.formants) # Many more measurements
+nrow(formants.homebrewed)
+
+# Looks like FastTrack probably tracks F1 better
+qqplot(fasttrack.formants$F1,
+       formants.homebrewed$F1)
+
+# F2 seems pretty comparable?
+qqplot(fasttrack.formants$F2,
+       formants.homebrewed$F2)
+
+
+
 # # Pivot longer
 # fasttrack.formants <- fasttrack.formants %>% pivot_longer(cols=c(f1,f2,f3),names_to = "formant",values_to="freq")
 # fasttrack.formants <- fasttrack.formants %>% mutate(formant = toupper(formant))
 # fasttrack.formants
+
+
+ 
+# 
+# ################
+# # Add normalized time
+# fasttrack.formants <- fasttrack.formants %>% group_by(id) %>% mutate(step = ((time-min(time))/(max(time)-min(time))*100))
 # 
 # # Rename some columns
 # fasttrack.formants$phone <- fasttrack.formants$label
@@ -114,11 +126,6 @@ formants.homebrewed
 # fasttrack.formants
 
 
-# Compare formant measurements across methods
-nrow(fasttrack.formants)
-nrow(formants.homebrewed)
-qqplot(fasttrack.formants$freq,
-       formants.homebrewed$freq)
  
 # Use the Fast Track data:
 formants <- fasttrack.formants

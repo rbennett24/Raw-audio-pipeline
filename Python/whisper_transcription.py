@@ -1,6 +1,6 @@
 # https://github.com/openai/whisper
 # https://github.com/linto-ai/whisper-timestamped
-import whisper_timestamped as whisper # whisper v1.1.10; whisper-timestamped v
+import whisper_timestamped as whisper # whisper v1.1.10; whisper-timestamped v1.15.9
 # import json
 import string
 import textgrid # textgrid v1.5 and v.1.6.1 both seem to work
@@ -9,6 +9,11 @@ import os
 import glob
 from pathlib import Path # pathlib v1.0.1
 from num2words import num2words # This is not a good solution and needs to be replaced, v0.5.13; requires an old version of numpy, which is an issue 
+
+####################
+# Input .wav files are expected in .../samples/mfa_input/
+# Output .txt files will also be saved in .../samples/mfa_input/
+####################
 
 # Update path as needed
 computer = "510fu"

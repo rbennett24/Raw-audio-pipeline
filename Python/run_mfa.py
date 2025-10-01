@@ -10,7 +10,15 @@ import shutil
 mfadict = "english_us_arpa" # "english_us_mfa"
 mfamodel = "english_us_arpa" # "english_mfa"
 spkPrefixLen = "2"
-inputPath = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/"
+
+####################
+# Input .wav and .text files are expected in .../samples/mfa_input/
+# Output .txt files will be saved in .../samples/mfa_aligned/
+####################
+
+# Update path as needed
+computer = "510fu"
+inputPath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/" % computer
 # os.chdir(inputPath) # Set base path as working directory
 
 

@@ -5,11 +5,17 @@ ONLY labelled intervals will be extracted, not empty intervals.
 """
 import os
 from os.path import join
-from praatio import praatio_scripts
+from praatio import praatio_scripts # praatio v6.2.0
 import glob
 
+####################
+# Input .wav and .TextGrid files are expected in .../samples/initial_recordings/
+# Output .wav files will be saved in .../samples/mfa_input/
+####################
+
 # Update path
-path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
+computer = "510fu"
+path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
 os.chdir(path) # Set base path as working directory
 outputPath = "./mfa_input/"
 

@@ -1,17 +1,18 @@
 # https://github.com/openai/whisper
 # https://github.com/linto-ai/whisper-timestamped
-import whisper_timestamped as whisper
-import json
+import whisper_timestamped as whisper # whisper v1.1.10; whisper-timestamped v
+# import json
 import string
-import textgrid
+import textgrid # textgrid v1.5 and v.1.6.1 both seem to work
 import csv
 import os
 import glob
-from pathlib import Path
-from num2words import num2words
+from pathlib import Path # pathlib v1.0.1
+from num2words import num2words # This is not a good solution and needs to be replaced, v0.5.13; requires an old version of numpy, which is an issue 
 
 # Update path as needed
-path = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/"
+computer = "510fu"
+path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
 os.chdir(path) # Set base path as working directory
 wav_files = glob.glob(os.path.join("./mfa_input/", "*.wav")) # Not case sensitive
 

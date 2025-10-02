@@ -1,6 +1,8 @@
 # Raw audio pipeline
 Scripts for processing raw, untranscribed audio to time-aligned word- and segment-level annotations.
 
+Presentation of sample results: https://docs.google.com/presentation/d/1PA5rW-72sAACNJwCbeuTEhJ1aXAPOB9A4i5V8oMv9j0/edit?usp=sharing
+
 **************
 To do right now:
 * Integrate out of dictionary processing, maybe with g2p?

@@ -70,10 +70,10 @@ item []:
             text = "the" 
         intervals [15]:
             xmin = 3.06 
-            xmax = 3.46 
+            xmax = 3.45 
             text = "store" 
         intervals [16]:
-            xmin = 3.46 
+            xmin = 3.45 
             xmax = 3.526871 
             text = "" 
     item [2]:
@@ -260,9 +260,9 @@ item []:
             text = "AO1" 
         intervals [45]:
             xmin = 3.29 
-            xmax = 3.46 
+            xmax = 3.45 
             text = "R" 
         intervals [46]:
-            xmin = 3.46 
+            xmin = 3.45 
             xmax = 3.526871 
             text = "" 

@@ -246,10 +246,10 @@ item []:
             text = "can" 
         intervals [59]:
             xmin = 16.71 
-            xmax = 17.04 
+            xmax = 17.05 
             text = "scoop" 
         intervals [60]:
-            xmin = 17.04 
+            xmin = 17.05 
             xmax = 17.27 
             text = "these" 
         intervals [61]:
@@ -1016,10 +1016,10 @@ item []:
             text = "UW1" 
         intervals [172]:
             xmin = 16.95 
-            xmax = 17.04 
+            xmax = 17.05 
             text = "P" 
         intervals [173]:
-            xmin = 17.04 
+            xmin = 17.05 
             xmax = 17.1 
             text = "DH" 
         intervals [174]:

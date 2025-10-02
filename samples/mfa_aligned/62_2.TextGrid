@@ -34,10 +34,10 @@ item []:
             text = "a" 
         intervals [6]:
             xmin = 0.79 
-            xmax = 1.13 
+            xmax = 1.15 
             text = "small" 
         intervals [7]:
-            xmin = 1.13 
+            xmin = 1.15 
             xmax = 1.62 
             text = "plastic" 
         intervals [8]:
@@ -78,10 +78,10 @@ item []:
             text = "the" 
         intervals [17]:
             xmin = 3.54 
-            xmax = 3.98 
+            xmax = 3.99 
             text = "kids" 
         intervals [18]:
-            xmin = 3.98 
+            xmin = 3.99 
             xmax = 4.033129 
             text = "" 
     item [2]:
@@ -148,10 +148,10 @@ item []:
             text = "AA1" 
         intervals [15]:
             xmin = 1.08 
-            xmax = 1.13 
+            xmax = 1.15 
             text = "L" 
         intervals [16]:
-            xmin = 1.13 
+            xmin = 1.15 
             xmax = 1.23 
             text = "P" 
         intervals [17]:
@@ -284,9 +284,9 @@ item []:
             text = "D" 
         intervals [49]:
             xmin = 3.9 
-            xmax = 3.98 
+            xmax = 3.99 
             text = "Z" 
         intervals [50]:
-            xmin = 3.98 
+            xmin = 3.99 
             xmax = 4.033129 
             text = "" 

@@ -1,12 +1,3 @@
-##############
-# TO DO:
-# -- Deal with out of dictionary (OOV) words in the input. These can be found at C:\Users\...\Documents\MFA\mfa_input\, in the files:
-# 		* oov_counts_<DICTIONARY NAME>.txt
-# 	 	* utterance_oovs.txt
-#		* oovs_found_<DICTIONARY NAME>.txt
-##############
-
-
 # This script assumes that the montreal forced aligner is set up
 # as <mfaaligner> in your conda environment (<conda create -n mfaaligner -c conda-forge montreal-forced-aligner> or <mamba create -n mfaaligner -c conda-forge montreal-forced-aligner>)
 #
@@ -38,88 +29,46 @@ spkPrefixLen = "2"
 ####################
 
 # Update path as needed
-computer = "510fu"
+computer = "Tiamat"
 inputPath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/" % computer
 # os.chdir(inputPath) # Set base path as working directory
 
 
-# For GUI prompts
+############
+# Update chosen dictionary file?
 root = tk.Tk()
 root.withdraw() # Hide the main window if you only want the prompt
+   
+result = messagebox.askyesno(title="Download dictionary file?",
+								   message=("Do you want to download and update the %s dictionary model?" % mfadict))
 
+if result == True:
+	print("Upgrading .dict file...")
+	# Open command line, start conda, force download of newest version of dictionary
+	command = "conda activate mfaaligner && mfa model download dictionary " + mfadict + " --ignore_cache"
 
-##
-# Check if dictionary is installed: if not, install it; and if it is already installed, ask if it should be updated.
-# In principle you could do this by seeing what files are actually on the computer, but I'd prefer to do it 
-# in such a way that we're literally asking what models the mfa aligner can find.
-# Same for acoustic models below.
-
-dictSearch = "conda activate mfaaligner && mfa model list dictionary"
-dictList = subprocess.run(dictSearch, capture_output=True, shell=True)
-
-command = "conda activate mfaaligner && mfa model download dictionary " + mfadict + " --ignore_cache"
-
-if mfadict in dictList.stdout.decode():
-	print("Dictionary found! Asking about upgrade...")
-
-	############
-	# Update chosen dictionary file?
-	result = messagebox.askyesno(title="Download dictionary file?",
-								 message=("Do you want to download and update the %s dictionary model?" % mfadict))
-
-	if result == True:
-		print("Upgrading .dict file...")
-		
-		# Open command line, start conda, force download of newest version of dictionary
-		ret = subprocess.run(command, capture_output=True, shell=True)
-		print(ret.stdout.decode())
-		if len(ret.stderr.decode()) > 0:
-			print("Something went wrong with the dictionary download! You may want to download manually from the MFA website.")
-
-else:
-	print("Attempting to download dictionary %s from MFA website..." % mfadict)
 	ret = subprocess.run(command, capture_output=True, shell=True)
+
 	print(ret.stdout.decode())
-	if len(ret.stderr.decode()) > 0:
-		print("Something went wrong with the dictionary download! You may want to download manually from the MFA website.")
 
 
-##
-# Check if acoustic model is installed: if not, install it; and if it is already installed, ask if it should be updated.
+############
+# Update chosen acoustic model?
+result = messagebox.askyesno(title="Download acoustic model?",
+								   message=("Do you want to download and update the %s acoustic model?" % mfamodel))
 
-acousticSearch = "conda activate mfaaligner && mfa model list acoustic"
-acousticList = subprocess.run(acousticSearch, capture_output=True, shell=True)
+if result == True:
+	print("Upgrading acoustic model...")
+	# Open command line, start conda, force download of newest version of acoustic model
+	command = "conda activate mfaaligner && mfa model download acoustic " + mfamodel + " --ignore_cache"
 
-command = "conda activate mfaaligner && mfa model download acoustic " + mfamodel + " --ignore_cache"
-
-if mfamodel in acousticList.stdout.decode():
-	print("Acoustic model found! Asking about upgrade...")
-
-	# Update chosen acoustic model?
-	result = messagebox.askyesno(title="Download acoustic model?",
-							     message=("Do you want to download and update the %s acoustic model?" % mfamodel))
-
-	if result == True:
-		print("Upgrading acoustic model...")
-		
-		# Open command line, start conda, force download of newest version of acoustic model
-		ret = subprocess.run(command, capture_output=True, shell=True)
-		print(ret.stdout.decode())
-		if len(ret.stderr.decode()) > 0:
-			print("Something went wrong with the acoustic model download! You may want to download manually from the MFA website.")
-
-else:
-	print("Attempting to download acoustic model %s from MFA website..." % mfamodel)
 	ret = subprocess.run(command, capture_output=True, shell=True)
+
 	print(ret.stdout.decode())
-	if len(ret.stderr.decode()) > 0:
-		print("Something went wrong with the acoustic model download! You may want to download manually from the MFA website.")
 
 
 #######################
-# TO EXTEND: MODEL TRAINING to languages without pre-existing acoustic models.
-# We'll probably want some other tools for generating pronunciation dictionaries, like the XPF
-# workflow you've used for A'ingae forced alignment.
+# TO EXTEND: MODEL TRAINING
 #######################
 
 
@@ -132,7 +81,11 @@ if result == True:
 	# Open command line, start conda, force download of newest version of dictionary
 	command = "conda activate mfaaligner && mfa validate --clean " + inputPath + " " + mfadict + " --speaker_characters " + spkPrefixLen
 
+	# Does not find conda on Windows 11
 	subprocess.Popen(["start", "cmd", "/k", command], shell=True)
+
+	# Does not stay open on Windows 11
+	# subprocess.Popen(["start", "C:/Windows/System32/cmd.exe", "/k", command], shell=True)
 
 
 #######################
@@ -158,7 +111,7 @@ if result == True:
 	############
 	# Move .wav files
 	resultMove = messagebox.askyesno(title="Move .wav files?",
-									   message=("Do you want to move the input .wav files to the folder which contains the aligned .TextGrids?\n(You should wait until alignment is complete before clicking yes on this!)"))
+									   message=("Do you want to move the input .wav files to the folder which contains the aligned .TextGrids?"))
 
 	if resultMove == True:
 		# Copy all .wav files from input directory to output directory:

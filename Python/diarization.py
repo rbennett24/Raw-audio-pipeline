@@ -1,6 +1,7 @@
 # https://github.com/pyannote/pyannote-audio?tab=readme-ov-file
-# pip install pyannote.audio
-# pip install huggingface_hub[hf_xet]
+
+# You should also run:
+# pip install pyannote.audio# pip install huggingface_hub[hf_xet]
 from pyannote.audio import Pipeline # pyannote v3.4.0; torch-audiomentations v0.12.0; torch_pitch_shift v1.2.5;
                                     # torchaudio v2.8.0; torchmetrics v1.8.2; torchvision v0.23.0; ffmpeg 1.4
 import string
@@ -21,10 +22,12 @@ import glob
 # In Windows, on the command line, use <set HF_TOKEN = "YOUR_ACTUAL_TOKEN_CODE"> to store the token locally.
 access_token = os.environ.get('HF_TOKEN')
 
-# There's a problem using the access_token from some computers, I don't know what the issue is
+# You might need to run this command *once* with the actual access token
+# written out, rather than calling HF_TOKEN as an environmental variable?
+# I don't know *why* that would be, but that seemed to be an issue with one of my computers.
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",
-    use_auth_token=access_token) # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
+    use_auth_token="access_token") # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
 
 # send pipeline to GPU (when available)
 import torch

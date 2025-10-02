@@ -14,10 +14,10 @@ item []:
         intervals: size = 24 
         intervals [1]:
             xmin = 0 
-            xmax = 0.11 
+            xmax = 0.12 
             text = "" 
         intervals [2]:
-            xmin = 0.11 
+            xmin = 0.12 
             xmax = 0.47 
             text = "six" 
         intervals [3]:
@@ -38,10 +38,10 @@ item []:
             text = "snow" 
         intervals [7]:
             xmin = 1.63 
-            xmax = 2.11 
+            xmax = 2.1 
             text = "peas" 
         intervals [8]:
-            xmin = 2.11 
+            xmin = 2.1 
             xmax = 2.44 
             text = "" 
         intervals [9]:
@@ -74,10 +74,10 @@ item []:
             text = "" 
         intervals [16]:
             xmin = 4.46 
-            xmax = 4.63 
+            xmax = 4.62 
             text = "and" 
         intervals [17]:
-            xmin = 4.63 
+            xmin = 4.62 
             xmax = 4.91 
             text = "maybe" 
         intervals [18]:
@@ -116,10 +116,10 @@ item []:
         intervals: size = 69 
         intervals [1]:
             xmin = 0 
-            xmax = 0.11 
+            xmax = 0.12 
             text = "" 
         intervals [2]:
-            xmin = 0.11 
+            xmin = 0.12 
             xmax = 0.29 
             text = "S" 
         intervals [3]:
@@ -200,10 +200,10 @@ item []:
             text = "IY1" 
         intervals [22]:
             xmin = 2 
-            xmax = 2.11 
+            xmax = 2.1 
             text = "Z" 
         intervals [23]:
-            xmin = 2.11 
+            xmin = 2.1 
             xmax = 2.44 
             text = "" 
         intervals [24]:
@@ -292,14 +292,14 @@ item []:
             text = "AH0" 
         intervals [45]:
             xmin = 4.52 
-            xmax = 4.57 
+            xmax = 4.58 
             text = "N" 
         intervals [46]:
-            xmin = 4.57 
-            xmax = 4.63 
+            xmin = 4.58 
+            xmax = 4.62 
             text = "D" 
         intervals [47]:
-            xmin = 4.63 
+            xmin = 4.62 
             xmax = 4.66 
             text = "M" 
         intervals [48]:

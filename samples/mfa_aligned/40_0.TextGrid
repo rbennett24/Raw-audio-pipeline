@@ -98,10 +98,10 @@ item []:
             text = "snow" 
         intervals [22]:
             xmin = 7 
-            xmax = 7.49 
+            xmax = 7.48 
             text = "peas" 
         intervals [23]:
-            xmin = 7.49 
+            xmin = 7.48 
             xmax = 8.04 
             text = "" 
         intervals [24]:
@@ -444,10 +444,10 @@ item []:
             text = "IY1" 
         intervals [67]:
             xmin = 7.43 
-            xmax = 7.49 
+            xmax = 7.48 
             text = "Z" 
         intervals [68]:
-            xmin = 7.49 
+            xmin = 7.48 
             xmax = 8.04 
             text = "" 
         intervals [69]:

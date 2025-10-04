@@ -38,7 +38,7 @@ spkPrefixLen = "2"
 ####################
 
 # Update path as needed
-computer = "Tiamat"
+computer = "510fu"
 inputPath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/" % computer
 os.chdir(inputPath) # Set base path as working directory
 

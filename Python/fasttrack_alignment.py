@@ -11,7 +11,7 @@ import pandas as pd
 # fasttrackpy is intended for command line use,
 # though there are more 'Pythonic' options (https://fasttrackiverse.github.io/fasttrackpy/usage/pythonic_use.html)
 
-computer = "Tiamat"
+computer = "510fu"
 basePath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/" % computer
 os.chdir(basePath) # Set base path as working directory
 

@@ -78,10 +78,10 @@ item []:
             text = "the" 
         intervals [17]:
             xmin = 3.54 
-            xmax = 3.97 
+            xmax = 3.98 
             text = "kids" 
         intervals [18]:
-            xmin = 3.97 
+            xmin = 3.98 
             xmax = 4.033129 
             text = "" 
     item [2]:
@@ -156,10 +156,10 @@ item []:
             text = "P" 
         intervals [17]:
             xmin = 1.23 
-            xmax = 1.27 
+            xmax = 1.28 
             text = "L" 
         intervals [18]:
-            xmin = 1.27 
+            xmin = 1.28 
             xmax = 1.35 
             text = "AE1" 
         intervals [19]:
@@ -216,10 +216,10 @@ item []:
             text = "AH0" 
         intervals [32]:
             xmin = 2.3 
-            xmax = 2.43 
+            xmax = 2.44 
             text = "B" 
         intervals [33]:
-            xmin = 2.43 
+            xmin = 2.44 
             xmax = 2.52 
             text = "IH1" 
         intervals [34]:
@@ -284,9 +284,9 @@ item []:
             text = "D" 
         intervals [49]:
             xmin = 3.9 
-            xmax = 3.97 
+            xmax = 3.98 
             text = "Z" 
         intervals [50]:
-            xmin = 3.97 
+            xmin = 3.98 
             xmax = 4.033129 
             text = "" 

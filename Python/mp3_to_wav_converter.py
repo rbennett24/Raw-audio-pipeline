@@ -10,7 +10,7 @@ from pathlib import Path # pathlib v1.0.1
 ####################
 
 # Update path
-computer = "Tiamat"
+computer = "510fu"
 path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
 os.chdir(path) # Set base path as working directory
 mp3_files = glob.glob(os.path.join("./mp3s/", "*.mp3")) # Not case sensitive

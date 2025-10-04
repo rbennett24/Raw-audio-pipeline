@@ -30,10 +30,10 @@ item []:
             text = "scoop" 
         intervals [5]:
             xmin = 0.69 
-            xmax = 0.92 
+            xmax = 0.93 
             text = "these" 
         intervals [6]:
-            xmin = 0.92 
+            xmin = 0.93 
             xmax = 1.33 
             text = "things" 
         intervals [7]:
@@ -160,10 +160,10 @@ item []:
             text = "IY1" 
         intervals [13]:
             xmin = 0.85 
-            xmax = 0.92 
+            xmax = 0.93 
             text = "Z" 
         intervals [14]:
-            xmin = 0.92 
+            xmin = 0.93 
             xmax = 1.04 
             text = "TH" 
         intervals [15]:

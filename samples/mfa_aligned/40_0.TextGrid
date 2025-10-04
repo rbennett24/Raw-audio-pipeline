@@ -134,10 +134,10 @@ item []:
             text = "cheese" 
         intervals [31]:
             xmin = 10.08 
-            xmax = 10.69 
+            xmax = 10.7 
             text = "" 
         intervals [32]:
-            xmin = 10.69 
+            xmin = 10.7 
             xmax = 11.1 
             text = "maybe" 
         intervals [33]:
@@ -528,10 +528,10 @@ item []:
             text = "Z" 
         intervals [89]:
             xmin = 10.08 
-            xmax = 10.69 
+            xmax = 10.7 
             text = "" 
         intervals [90]:
-            xmin = 10.69 
+            xmin = 10.7 
             xmax = 10.82 
             text = "M" 
         intervals [91]:

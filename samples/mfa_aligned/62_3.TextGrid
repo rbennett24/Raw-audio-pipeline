@@ -356,10 +356,10 @@ item []:
             text = "R" 
         intervals [61]:
             xmin = 4.85 
-            xmax = 4.99 
+            xmax = 5 
             text = "EY1" 
         intervals [62]:
-            xmin = 4.99 
+            xmin = 5 
             xmax = 5.08 
             text = "D" 
         intervals [63]:

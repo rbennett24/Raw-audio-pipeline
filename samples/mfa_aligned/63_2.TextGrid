@@ -11,13 +11,13 @@ item []:
         name = "words" 
         xmin = 0 
         xmax = 8.724376 
-        intervals: size = 39 
+        intervals: size = 40 
         intervals [1]:
             xmin = 0 
-            xmax = 0.12 
+            xmax = 0.11 
             text = "" 
         intervals [2]:
-            xmin = 0.12 
+            xmin = 0.11 
             xmax = 0.22 
             text = "we" 
         intervals [3]:
@@ -166,20 +166,24 @@ item []:
             text = "train" 
         intervals [39]:
             xmin = 8.2 
-            xmax = 8.724376 
+            xmax = 8.69 
             text = "station" 
+        intervals [40]:
+            xmin = 8.69 
+            xmax = 8.724376 
+            text = "" 
     item [2]:
         class = "IntervalTier" 
         name = "phones" 
         xmin = 0 
         xmax = 8.724376 
-        intervals: size = 115 
+        intervals: size = 116 
         intervals [1]:
             xmin = 0 
-            xmax = 0.12 
+            xmax = 0.11 
             text = "" 
         intervals [2]:
-            xmin = 0.12 
+            xmin = 0.11 
             xmax = 0.15 
             text = "W" 
         intervals [3]:
@@ -632,5 +636,9 @@ item []:
             text = "AH0" 
         intervals [115]:
             xmin = 8.6 
-            xmax = 8.724376 
+            xmax = 8.69 
             text = "N" 
+        intervals [116]:
+            xmin = 8.69 
+            xmax = 8.724376 
+            text = "" 

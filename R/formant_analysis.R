@@ -1,9 +1,3 @@
-
-#####################
-# NEED TO REGENERATE fasttrack.formants,
-# AND MAKE SURE THAT THE PHONE AND STRESS COLUMNS ARE BEHAVING AS INTENDED.
-#####################
-
 ######################################
 # Packages
 ######################################
@@ -15,7 +9,7 @@ library(vroom)
 ######################################
 # Set working directory
 ######################################
-computer = "Tiamat"
+computer = "510fu"
 
 setwd(paste0("C:/Users/",computer,"/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/")) # Where files are stored.
 
@@ -42,17 +36,17 @@ showColor<-function(pal){
 # Read in data
 ######################################
 
-# Formant measurements produced by a handmade script
-# Note that this does not include filenames or word-level coding right now.
-formants.homebrewed <- read.csv("formant_tracks.txt",sep="\t") %>% as_tibble()
-formants.homebrewed$phone <- formants.homebrewed$vowel.code
-formants.homebrewed <- formants.homebrewed %>% select(-vowel.code)
+# # Formant measurements produced by a handmade script
+# # Note that this does not include filenames or word-level coding right now.
+# formants.homebrewed <- read.csv("formant_tracks.txt",sep="\t") %>% as_tibble()
+# formants.homebrewed$phone <- formants.homebrewed$vowel.code
+# formants.homebrewed <- formants.homebrewed %>% select(-vowel.code)
 
 
 ######################################
 # Compare FastTrak data to the hand-extracted formant data.
 ######################################
-fasttrack.formants <- vroom("./corpus/fasttrack.csv") %>% select(c(F1,F2,F3,
+fasttrack.formants <- vroom("./fasttrack.csv") %>% select(c(F1,F2,F3,
                                                                    F1_s,F2_s,F3_s, # Smoothed formant values
                                                                    time,
                                                                    file_name,id,group,
@@ -64,7 +58,7 @@ fasttrack.formants <- fasttrack.formants %>% rename("phone" = "label")
 fasttrack.formants
 
 # Read in .TextGrid info, and merge
-fasttrack.formants.tg <- vroom("./corpus/fasttrack_TextGrid_data.csv") %>% mutate_all(as.factor)
+fasttrack.formants.tg <- vroom("./fasttrack_TextGrid_data.csv") %>% mutate_all(as.factor)
 
 summary(fasttrack.formants$phone) # Just vowel intervals
 summary(fasttrack.formants.tg$phone) # All intervals
@@ -76,27 +70,27 @@ fasttrack.formants <- left_join(fasttrack.formants,fasttrack.formants.tg)
 rm(fasttrack.formants.tg)
 
 
-###########
-# Compare different formant measurement techniques
-
-# Pivot wider to compare
-formants.homebrewed <- formants.homebrewed %>% pivot_wider(names_from = formant,values_from = freq)
-formants.homebrewed
-
-fasttrack.formants
-
-# Compare formant measurements across methods
-nrow(fasttrack.formants) # Many more measurements
-nrow(formants.homebrewed)
-
-# Looks like FastTrack probably tracks F1 better
-qqplot(fasttrack.formants$F1,
-       formants.homebrewed$F1)
-
-# F2 seems pretty comparable?
-qqplot(fasttrack.formants$F2,
-       formants.homebrewed$F2)
-
+# ###########
+# # Compare different formant measurement techniques
+# 
+# # Pivot wider to compare
+# formants.homebrewed <- formants.homebrewed %>% pivot_wider(names_from = formant,values_from = freq)
+# formants.homebrewed
+# 
+# fasttrack.formants
+# 
+# # Compare formant measurements across methods
+# nrow(fasttrack.formants) # Many more measurements
+# nrow(formants.homebrewed)
+# 
+# # Looks like FastTrack probably tracks F1 better
+# qqplot(fasttrack.formants$F1,
+#        formants.homebrewed$F1)
+# 
+# # F2 seems pretty comparable?
+# qqplot(fasttrack.formants$F2,
+#        formants.homebrewed$F2)
+# 
 
 ################
 # Add normalized time

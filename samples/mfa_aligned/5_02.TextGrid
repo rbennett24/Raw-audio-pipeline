@@ -120,10 +120,10 @@ item []:
             text = "S" 
         intervals [18]:
             xmin = 1.47 
-            xmax = 1.54 
+            xmax = 1.53 
             text = "N" 
         intervals [19]:
-            xmin = 1.54 
+            xmin = 1.53 
             xmax = 1.69 
             text = "OW1" 
         intervals [20]:

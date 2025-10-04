@@ -18,10 +18,10 @@ item []:
             text = "" 
         intervals [2]:
             xmin = 0.04 
-            xmax = 0.35 
+            xmax = 0.34 
             text = "six" 
         intervals [3]:
-            xmin = 0.35 
+            xmin = 0.34 
             xmax = 0.74 
             text = "spoons" 
         intervals [4]:
@@ -42,10 +42,10 @@ item []:
             text = "peas" 
         intervals [8]:
             xmin = 1.68 
-            xmax = 2.05 
+            xmax = 2.06 
             text = "" 
         intervals [9]:
-            xmin = 2.05 
+            xmin = 2.06 
             xmax = 2.41 
             text = "five" 
         intervals [10]:
@@ -54,10 +54,10 @@ item []:
             text = "" 
         intervals [11]:
             xmin = 2.68 
-            xmax = 2.9 
+            xmax = 2.88 
             text = "thick" 
         intervals [12]:
-            xmin = 2.9 
+            xmin = 2.88 
             xmax = 3.12 
             text = "" 
         intervals [13]:
@@ -140,10 +140,10 @@ item []:
             text = "K" 
         intervals [5]:
             xmin = 0.31 
-            xmax = 0.35 
+            xmax = 0.34 
             text = "S" 
         intervals [6]:
-            xmin = 0.35 
+            xmin = 0.34 
             xmax = 0.39 
             text = "S" 
         intervals [7]:
@@ -212,10 +212,10 @@ item []:
             text = "Z" 
         intervals [23]:
             xmin = 1.68 
-            xmax = 2.05 
+            xmax = 2.06 
             text = "" 
         intervals [24]:
-            xmin = 2.05 
+            xmin = 2.06 
             xmax = 2.09 
             text = "F" 
         intervals [25]:
@@ -240,10 +240,10 @@ item []:
             text = "IH1" 
         intervals [30]:
             xmin = 2.77 
-            xmax = 2.9 
+            xmax = 2.88 
             text = "K" 
         intervals [31]:
-            xmin = 2.9 
+            xmin = 2.88 
             xmax = 3.12 
             text = "" 
         intervals [32]:

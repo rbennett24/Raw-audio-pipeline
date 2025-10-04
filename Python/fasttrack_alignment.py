@@ -1,4 +1,5 @@
-import os 
+import os
+import shutil
 import subprocess
 from pathlib import Path
 import glob
@@ -10,14 +11,21 @@ import pandas as pd
 # fasttrackpy is intended for command line use,
 # though there are more 'Pythonic' options (https://fasttrackiverse.github.io/fasttrackpy/usage/pythonic_use.html)
 
-###########
-# TO DO: CODE THAT MOVES FILES FROM INPUT TO A "corpus" SUBFOLDER FIRST,
-# so that input files are successfully isolated from the subfolder problem noted just below.
-###########
+computer = "Tiamat"
+basePath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/" % computer
+os.chdir(basePath) # Set base path as working directory
 
 # Your corpus should be in a folder *without any other subfolders*. Otherwise, some kind of weird access problems result.
-inputPath = "C:/Users/Tiamat/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/corpus/"
-os.chdir(inputPath) # Set base path as working directory
+# We try to guarantee that here.
+inputPath = basePath + "corpus/"
+os.makedirs(inputPath, exist_ok=True)
+wav_files = glob.glob(os.path.join(basePath, '*.wav'))
+for w in wav_files:
+	copyWavTo = inputPath + Path(w).stem + ".wav"
+	copyTGTo = inputPath + Path(w).stem + ".TextGrid"
+	copyTGFrom = basePath + Path(w).stem + ".TextGrid"
+	shutil.copy(w, copyWavTo)
+	shutil.copy(copyTGFrom, copyTGTo)
 
 outputPath = inputPath
 

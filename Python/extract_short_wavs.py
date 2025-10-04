@@ -7,10 +7,14 @@ import os
 from os.path import join
 from praatio import praatio_scripts # praatio v6.2.0
 import glob
+from pydub import AudioSegment, effects # pydub v0.25.1
+from pathlib import Path # pathlib v1.0.1
+import shutil
 
 ####################
 # Input .wav and .TextGrid files are expected in .../samples/initial_recordings/
 # Output .wav files will be saved in .../samples/mfa_input/
+# Amplitude normalized .wav files will be saved in .../samples/normalized/
 ####################
 
 # Update path
@@ -22,13 +26,28 @@ outputPath = "./mfa_input/"
 if not os.path.exists(outputPath):
     os.mkdir(outputPath)
 
+if not os.path.exists("./normalized/"):
+    os.mkdir("./normalized/")
+
 wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case sensitive
 
 for wav in wav_files:
-    # TO DO: normalize input .wav first.
+
+    # Create normalized version of .wav
+    rawsound = AudioSegment.from_file(wav)
+    normalizedsound = effects.normalize(rawsound)
+    normWav = "./normalized/" + Path(wav).stem + ".wav"
+    normalizedsound.export(normWav, format="wav")
+
     praatio_scripts.splitAudioOnTier(
-        join(path, wav), join(path, wav.replace(".wav","_diarized.TextGrid")), "DetectedSpeech", outputPath,
-        # In this case, we don't actually want the .TextGrids that splitAudioOnTier generates.
-        outputTGFlag = False
+        normWav, # Input .wav file
+        wav.replace(".wav","_diarized.TextGrid"), # Input .TextGRid file
+        "DetectedSpeech", # Tier
+        outputPath, # Output path
+        outputTGFlag = False # We don't want chunked .TextGrids here, just the .wav files.
     )
 
+
+# If you like, delete the file location with normalized .wav files
+# after processing is done.
+shutil.rmtree("./normalized/")

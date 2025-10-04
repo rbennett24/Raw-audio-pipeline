@@ -352,10 +352,10 @@ item []:
             text = "Z" 
         intervals [58]:
             xmin = 7.22 
-            xmax = 7.3 
+            xmax = 7.29 
             text = "AH0" 
         intervals [59]:
-            xmin = 7.3 
+            xmin = 7.29 
             xmax = 7.46 
             text = "V" 
         intervals [60]:

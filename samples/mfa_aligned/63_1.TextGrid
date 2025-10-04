@@ -11,7 +11,7 @@ item []:
         name = "words" 
         xmin = 0 
         xmax = 10.310635 
-        intervals: size = 39 
+        intervals: size = 40 
         intervals [1]:
             xmin = 0 
             xmax = 0.03 
@@ -62,10 +62,10 @@ item []:
             text = "with" 
         intervals [13]:
             xmin = 2.71 
-            xmax = 2.8 
+            xmax = 2.81 
             text = "her" 
         intervals [14]:
-            xmin = 2.8 
+            xmin = 2.81 
             xmax = 2.97 
             text = "from" 
         intervals [15]:
@@ -74,10 +74,10 @@ item []:
             text = "the" 
         intervals [16]:
             xmin = 3.06 
-            xmax = 3.53 
+            xmax = 3.52 
             text = "store" 
         intervals [17]:
-            xmin = 3.53 
+            xmin = 3.52 
             xmax = 3.9 
             text = "" 
         intervals [18]:
@@ -106,10 +106,10 @@ item []:
             text = "peas" 
         intervals [24]:
             xmin = 5.85 
-            xmax = 6.17 
+            xmax = 6.18 
             text = "" 
         intervals [25]:
-            xmin = 6.17 
+            xmin = 6.18 
             xmax = 6.49 
             text = "five" 
         intervals [26]:
@@ -134,10 +134,10 @@ item []:
             text = "cheese" 
         intervals [31]:
             xmin = 8.09 
-            xmax = 8.31 
+            xmax = 8.32 
             text = "" 
         intervals [32]:
-            xmin = 8.31 
+            xmin = 8.32 
             xmax = 8.45 
             text = "and" 
         intervals [33]:
@@ -162,10 +162,14 @@ item []:
             text = "her" 
         intervals [38]:
             xmin = 9.39 
-            xmax = 9.99 
+            xmax = 9.67 
             text = "brother" 
         intervals [39]:
-            xmin = 9.99 
+            xmin = 9.67 
+            xmax = 10.03 
+            text = "bob" 
+        intervals [40]:
+            xmin = 10.03 
             xmax = 10.310635 
             text = "" 
     item [2]:
@@ -173,7 +177,7 @@ item []:
         name = "phones" 
         xmin = 0 
         xmax = 10.310635 
-        intervals: size = 111 
+        intervals: size = 114 
         intervals [1]:
             xmin = 0 
             xmax = 0.03 
@@ -236,10 +240,10 @@ item []:
             text = "AE1" 
         intervals [16]:
             xmin = 1.5 
-            xmax = 1.58 
+            xmax = 1.59 
             text = "S" 
         intervals [17]:
-            xmin = 1.58 
+            xmin = 1.59 
             xmax = 1.63 
             text = "K" 
         intervals [18]:
@@ -320,10 +324,10 @@ item []:
             text = "HH" 
         intervals [37]:
             xmin = 2.76 
-            xmax = 2.8 
+            xmax = 2.81 
             text = "ER0" 
         intervals [38]:
-            xmin = 2.8 
+            xmin = 2.81 
             xmax = 2.88 
             text = "F" 
         intervals [39]:
@@ -356,10 +360,10 @@ item []:
             text = "AO1" 
         intervals [46]:
             xmin = 3.34 
-            xmax = 3.53 
+            xmax = 3.52 
             text = "R" 
         intervals [47]:
-            xmin = 3.53 
+            xmin = 3.52 
             xmax = 3.9 
             text = "" 
         intervals [48]:
@@ -448,10 +452,10 @@ item []:
             text = "Z" 
         intervals [69]:
             xmin = 5.85 
-            xmax = 6.17 
+            xmax = 6.18 
             text = "" 
         intervals [70]:
-            xmin = 6.17 
+            xmin = 6.18 
             xmax = 6.21 
             text = "F" 
         intervals [71]:
@@ -528,10 +532,10 @@ item []:
             text = "Z" 
         intervals [89]:
             xmin = 8.09 
-            xmax = 8.31 
+            xmax = 8.32 
             text = "" 
         intervals [90]:
-            xmin = 8.31 
+            xmin = 8.32 
             xmax = 8.35 
             text = "AE1" 
         intervals [91]:
@@ -612,9 +616,21 @@ item []:
             text = "DH" 
         intervals [110]:
             xmin = 9.6 
-            xmax = 9.99 
+            xmax = 9.67 
             text = "ER0" 
         intervals [111]:
-            xmin = 9.99 
+            xmin = 9.67 
+            xmax = 9.76 
+            text = "B" 
+        intervals [112]:
+            xmin = 9.76 
+            xmax = 10 
+            text = "AA1" 
+        intervals [113]:
+            xmin = 10 
+            xmax = 10.03 
+            text = "B" 
+        intervals [114]:
+            xmin = 10.03 
             xmax = 10.310635 
             text = "" 

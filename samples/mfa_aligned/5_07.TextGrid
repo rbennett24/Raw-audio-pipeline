@@ -30,10 +30,10 @@ item []:
             text = "big" 
         intervals [5]:
             xmin = 0.6 
-            xmax = 0.9 
+            xmax = 0.89 
             text = "toy" 
         intervals [6]:
-            xmin = 0.9 
+            xmin = 0.89 
             xmax = 1.34 
             text = "frog" 
         intervals [7]:
@@ -96,10 +96,10 @@ item []:
             text = "T" 
         intervals [10]:
             xmin = 0.67 
-            xmax = 0.9 
+            xmax = 0.89 
             text = "OY1" 
         intervals [11]:
-            xmin = 0.9 
+            xmin = 0.89 
             xmax = 1.01 
             text = "F" 
         intervals [12]:

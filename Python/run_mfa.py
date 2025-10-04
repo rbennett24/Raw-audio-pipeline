@@ -38,9 +38,9 @@ spkPrefixLen = "2"
 ####################
 
 # Update path as needed
-computer = "510fu"
+computer = "Tiamat"
 inputPath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/" % computer
-# os.chdir(inputPath) # Set base path as working directory
+os.chdir(inputPath) # Set base path as working directory
 
 
 # For GUI prompts
@@ -60,7 +60,7 @@ dictList = subprocess.run(dictSearch, capture_output=True, shell=True)
 command = "conda activate mfaaligner && mfa model download dictionary " + mfadict + " --ignore_cache"
 
 if mfadict in dictList.stdout.decode():
-	print("Dictionary found! Asking about upgrade...")
+	print("Dictionary found! Asking about update...")
 
 	############
 	# Update chosen dictionary file?
@@ -93,7 +93,7 @@ acousticList = subprocess.run(acousticSearch, capture_output=True, shell=True)
 command = "conda activate mfaaligner && mfa model download acoustic " + mfamodel + " --ignore_cache"
 
 if mfamodel in acousticList.stdout.decode():
-	print("Acoustic model found! Asking about upgrade...")
+	print("Acoustic model found! Asking about update...")
 
 	# Update chosen acoustic model?
 	result = messagebox.askyesno(title="Download acoustic model?",
@@ -129,6 +129,7 @@ result = messagebox.askyesno(title="Run validation?",
 								   message=("Do you want to run validation before aligning?"))
 
 if result == True:
+	print("Running validation...")
 	# Open command line, start conda, force download of newest version of dictionary
 	command = "conda activate mfaaligner && mfa validate --clean " + inputPath + " " + mfadict + " --speaker_characters " + spkPrefixLen
 
@@ -146,6 +147,7 @@ result = messagebox.askyesno(title="Run alignment?",
 								   message=("Are you ready to align your data?"))
 
 if result == True:
+	print("Running alignment...")
 	outPutLoc = inputPath.replace("mfa_input","mfa_aligned")
 	Path(outPutLoc).mkdir(parents=True, exist_ok=True)
 
@@ -157,27 +159,28 @@ if result == True:
 
 	############
 	# Move .wav files
-	resultMove = messagebox.askyesno(title="Move .wav files?",
-									   message=("Do you want to move the input .wav files to the folder which contains the aligned .TextGrids?\n(You should wait until alignment is complete before clicking yes on this!)"))
+	resultMove = messagebox.askyesno(title="Copy .wav files?",
+									   message=("Do you want to copy the input .wav files to the folder which contains the aligned .TextGrids?\n(You should wait until alignment is complete before clicking yes on this!)"))
 
 	if resultMove == True:
+		print("Copying input .wav files, and sequestering unaligned .wav files...")
 		# Copy all .wav files from input directory to output directory:
 		wav_files = glob.glob(os.path.join(inputPath, "*.wav")) # Not case sensitive
 		for w in wav_files:
 			newLocation = w.replace("mfa_input","mfa_aligned")
-			shutil.move(w,newLocation)
+			shutil.copy(w,newLocation) # Change back to 'move'?
 
 		# Sequester unaligned .wav files
-		unalignedPath = "./mfa_aligned/unaligned_wavs/"
+		unalignedPath = inputPath.replace("mfa_input","mfa_aligned/unaligned_wavs/")
 		Path(unalignedPath).mkdir(parents=True, exist_ok=True)
 
 		wav_files = glob.glob(os.path.join(inputPath.replace("mfa_input","mfa_aligned"), "*.wav")) # Not case sensitive
 		for w in wav_files:
 			if os.path.exists(w.replace(".wav",".TextGrid")):
-				pass
-			else: 
+		 		pass
+			else:
 				print("Unaligned .wav file: " + w)
-				shutil.move(w,w.replace("mfa_aligned","/mfa_aligned/unaligned/"))
+				shutil.move(w,w.replace("mfa_aligned","/mfa_aligned/unaligned_wavs/"))
 
 
 # Terminate GUI

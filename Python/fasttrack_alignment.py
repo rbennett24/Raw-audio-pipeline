@@ -18,7 +18,8 @@ os.chdir(basePath) # Set base path as working directory
 # Your corpus should be in a folder *without any other subfolders*. Otherwise, some kind of weird access problems result.
 # We try to guarantee that here.
 inputPath = basePath + "corpus/"
-os.makedirs(inputPath, exist_ok=True)
+if not os.path.exists(inputPath):
+    os.mkdir(inputPath)
 wav_files = glob.glob(os.path.join(basePath, '*.wav'))
 for w in wav_files:
 	copyWavTo = inputPath + Path(w).stem + ".wav"
@@ -66,3 +67,10 @@ for tg in tg_files:
 	outputPDframe = pd.concat([outputPDframe, tgPDframe])
 
 outputPDframe.to_csv('fasttrack_TextGrid_data.csv', index=False)
+
+
+# The following doesn't currently work, because FastTrack is called from the command line, rather than in a more pythonic way.
+# That causes the folder to get deleted before it's processed! 
+# https://fasttrackiverse.github.io/fasttrackpy/usage/pythonic_use.html
+# Get rid of the corpus folder, which is redundant.
+# shutil.rmtree(inputPath) 

@@ -119,7 +119,7 @@ formants$vqual <- recode(formants$vqual,
                           "OW" = "o͡ʊ",
                           "OY" = "ɔ͡ɪ",
                           "UH" = "ʊ",
-                          "UW" = "i"
+                          "UW" = "u"
                           )
 
 formants$speaker <- str_split(formants$file_name,"_",simplify=T)[,1]

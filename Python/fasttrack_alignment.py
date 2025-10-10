@@ -25,11 +25,12 @@ import pandas as pd
 # Parameters to set
 
 # A regular expression telling FastTrack what vowel symbols to look for. Default is [AEIOU], i.e. English ARPABET.
-vlabels = "[AEIOUaeiouãẽĩõũ]" 
+# This is currently not working very well outside of English.
+vlabels = "[AEIOUaeiouãẽĩõũ]"
 
 # Update path as needed
-computer = "Tiamat"
-baseFileFolder = "spanish" # samples, spanish
+computer = "510fu"
+baseFileFolder = "samples" # samples, spanish
 ####################
 basePath = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/mfa_aligned/"
 os.chdir(basePath) # Set base path as working directory
@@ -42,14 +43,15 @@ if not os.path.exists(inputPath):
 wav_files = glob.glob(os.path.join(basePath, '*.wav'))
 for w in wav_files:
 	copyWavTo = inputPath + Path(w).stem + ".wav"
-	copyTGTo = inputPath + Path(w).stem + ".TextGrid"
-	copyTGFrom = basePath + Path(w).stem + ".TextGrid"
 	shutil.copy(w, copyWavTo)
+
+	copyTGFrom = basePath + Path(w).stem + ".TextGrid"
+	copyTGTo = inputPath + Path(w).stem + ".TextGrid"
 	shutil.copy(copyTGFrom, copyTGTo)
 
 outputPath = inputPath
 
-command = f"fasttrack corpus --target-labels {vlabels} --corpus {inputPath} --output fasttrack.csv"
+command = f"fasttrack corpus --target-labels \"{vlabels}\" --corpus {inputPath} --output fasttrack.csv"
 subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
 

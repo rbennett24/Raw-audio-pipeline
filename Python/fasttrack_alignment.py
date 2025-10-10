@@ -24,7 +24,8 @@ import pandas as pd
 ####################
 # Parameters to set
 
-vlabels = "[AEIOUaeiou(ã)(ẽ)(ĩ)(õ)(ũ)]" # A regular expression telling FastTrack what vowel symbols to look for
+# A regular expression telling FastTrack what vowel symbols to look for. Default is [AEIOU], i.e. English ARPABET.
+vlabels = "[AEIOUaeiouãẽĩõũ]" 
 
 # Update path as needed
 computer = "Tiamat"

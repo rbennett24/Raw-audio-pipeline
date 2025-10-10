@@ -1,3 +1,8 @@
+##############
+# TO DO:
+# -- Speed up .TextGrid merging method.
+##############
+
 import os
 import shutil
 import subprocess
@@ -11,8 +16,21 @@ import pandas as pd
 # fasttrackpy is intended for command line use,
 # though there are more 'Pythonic' options (https://fasttrackiverse.github.io/fasttrackpy/usage/pythonic_use.html)
 
-computer = "510fu"
-basePath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_aligned/" % computer
+####################
+# Input .wav and .TextGrid files are expected in .../samples/mfa_aligned/
+# Output .csv file will be saved in .../samples/mfa_aligned/
+####################
+
+####################
+# Parameters to set
+
+vlabels = "[AEIOUaeiou(ã)(ẽ)(ĩ)(õ)(ũ)]" # A regular expression telling FastTrack what vowel symbols to look for
+
+# Update path as needed
+computer = "Tiamat"
+baseFileFolder = "spanish" # samples, spanish
+####################
+basePath = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/mfa_aligned/"
 os.chdir(basePath) # Set base path as working directory
 
 # Your corpus should be in a folder *without any other subfolders*. Otherwise, some kind of weird access problems result.
@@ -30,7 +48,7 @@ for w in wav_files:
 
 outputPath = inputPath
 
-command = "fasttrack corpus --corpus %s --output %s" % (inputPath,"fasttrack.csv")
+command = f"fasttrack corpus --target-labels {vlabels} --corpus {inputPath} --output fasttrack.csv"
 subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
 

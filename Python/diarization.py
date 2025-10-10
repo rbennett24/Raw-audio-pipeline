@@ -15,16 +15,31 @@ import glob
 # Output .TextGrid files will be saved in .../samples/initial_recordings/
 ####################
 
+####################
+# Parameters to set
+
 # I have a Hugging Face token stored on my desktop computer as an environmental variable.
 # We access it here, without publishing it in the code itself, for security reasons.
 # To get an HF token, go to https://huggingface.co/settings/tokens, and set fine grained
 # permissions to approve "Read access to contents of all public gated repos you can access".
 # In Windows, on the command line, use <set HF_TOKEN = "YOUR_ACTUAL_TOKEN_CODE"> to store the token locally.
+print("Accessing Hugging Face API to use pyannote.audio tools.\n\n")
 access_token = os.environ.get('HF_TOKEN')
 
 # You might need to run this command *once* with the actual access token
 # written out, rather than calling HF_TOKEN as an environmental variable?
 # I don't know *why* that would be, but that seemed to be an issue with one of my computers.
+
+# Update path
+computer = "510fu"
+baseFileFolder = "samples" # samples, spanish
+####################
+path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
+os.chdir(path) # Set base path as working directory
+wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case sensitive
+
+
+print("Initializing pipeline for speech detection and diarization (speaker identification).\n\n")
 pipeline = Pipeline.from_pretrained(
     "pyannote/speaker-diarization-3.1",
     use_auth_token="access_token") # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
@@ -33,12 +48,6 @@ pipeline = Pipeline.from_pretrained(
 import torch
 # pipeline.to(torch.device("cuda")) # CUDA needs to be installed from NVIDIA
 
-# Update path
-computer = "510fu"
-path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
-os.chdir(path) # Set base path as working directory
-wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case sensitive
-
 for w in wav_files:
     inputWav = w
 
@@ -46,6 +55,7 @@ for w in wav_files:
     # It's useful to set  the number of speakers expected in the files
     # This code assumes one speaker, but could be extended to process all speakers detected and stored in the CSV file generated below e.g. as different tiers.
     # Setting max_speakers REALLY speeds up the process!
+    print(f"Running speech detection and diarization (speaker identification) on {w}...\n\n")
     diarization = pipeline(inputWav,min_speakers=1, max_speakers=1) 
 
     tmpCSV = inputWav.lower().replace(".wav","_diarized.csv")

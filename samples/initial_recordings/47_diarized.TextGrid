@@ -18,10 +18,10 @@ item []:
 				text = ""
 			intervals [2]:
 				xmin = 0.23346875
-				xmax = 1.70159375
+				xmax = 1.68471875
 				text = "SPEAKER_00"
 			intervals [3]:
-				xmin = 1.70159375
+				xmin = 1.68471875
 				xmax = 1.8872187500000002
 				text = ""
 			intervals [4]:

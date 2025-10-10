@@ -9,9 +9,14 @@ from pathlib import Path # pathlib v1.0.1
 # Output .wav files will be amplitude normalized.
 ####################
 
+####################
+# Parameters to set
 # Update path
 computer = "510fu"
-path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
+baseFileFolder = "samples" # samples, spanish
+####################
+
+path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
 os.chdir(path) # Set base path as working directory
 mp3_files = glob.glob(os.path.join("./mp3s/", "*.mp3")) # Not case sensitive
 

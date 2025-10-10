@@ -6,6 +6,11 @@
 #		* oovs_found_<DICTIONARY NAME>.txt
 ##############
 
+############
+# On Windows 11, I had to do the following to get this script to run (weirdly, after it had already been running fine...):
+# https://stackoverflow.com/a/78959187/28708161
+# https://stackoverflow.com/a/64511263/28708161
+############
 
 # This script assumes that the montreal forced aligner is set up
 # as <mfaaligner> in your conda environment (<conda create -n mfaaligner -c conda-forge montreal-forced-aligner> or <mamba create -n mfaaligner -c conda-forge montreal-forced-aligner>)
@@ -27,19 +32,35 @@ import glob
 import os
 import shutil
 
-# Parameters
-mfadict = "english_us_arpa" # "english_us_mfa"
-mfamodel = "english_us_arpa" # "english_mfa"
-spkPrefixLen = "2"
-
 ####################
-# Input .wav and .text files are expected in .../samples/mfa_input/
+# Input .wav and .txt files are expected in .../samples/mfa_input/
 # Output .txt files will be saved in .../samples/mfa_aligned/
 ####################
 
+####################
+# Parameters to set
+# How many characters are needed at the beginning of each file name
+# to identify the same individual speakers?
+# You can also group speaker files into subfolders for MFA if you'd prefer.
+spkPrefixLen = "2" 
+
+# Set language
+language = "English"
+
+# Select MFA dictionary and acoustic model, depending on the language.
+if language == "Spanish":
+	mfadict = "spanish_latin_america_mfa"
+	mfamodel = "spanish_mfa"
+
+else: # English ARPABET by default
+	mfadict = "english_us_mfa"
+	mfamodel = "english_mfa"
+
 # Update path as needed
 computer = "510fu"
-inputPath = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/mfa_input/" % computer
+baseFileFolder = "samples" # samples, spanish
+####################
+inputPath = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/mfa_input/"
 os.chdir(inputPath) # Set base path as working directory
 
 

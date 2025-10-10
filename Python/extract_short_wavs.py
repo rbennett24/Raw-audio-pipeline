@@ -17,11 +17,16 @@ import shutil
 # Amplitude normalized .wav files will be saved in .../samples/normalized/
 ####################
 
+####################
+# Parameters to set
 # Update path
 computer = "510fu"
-path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
+baseFileFolder = "samples" # samples, spanish
+####################
+path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
 os.chdir(path) # Set base path as working directory
 outputPath = "./mfa_input/"
+
 
 if not os.path.exists(outputPath):
     os.mkdir(outputPath)

@@ -1,6 +1,7 @@
 # https://github.com/openai/whisper
 # https://github.com/linto-ai/whisper-timestamped
 import whisper_timestamped as whisper # whisper v1.1.10; whisper-timestamped v1.15.9
+# Good idea to also run pip install onnxruntime as dependency
 # import json
 import string
 import textgrid # textgrid v1.5 and v.1.6.1 both seem to work
@@ -8,23 +9,38 @@ import csv
 import os
 import glob
 from pathlib import Path # pathlib v1.0.1
-from num2words import num2words # This is not a good solution and needs to be replaced, v0.5.13; requires an old version of numpy, which is an issue 
+from num2words import num2words # This is not a good solution and needs to be replaced, v0.5.13; requires an old version of numpy, which is an issue
 
 ####################
 # Input .wav files are expected in .../samples/mfa_input/
 # Output .txt files will also be saved in .../samples/mfa_input/
 ####################
 
+####################
+# Parameters to set
+# Set language
+language = "English"
+
+# Set language model
+# https://github.com/openai/whisper?tab=readme-ov-file#available-models-and-languages
+# base.en for English; bare base should work for other languages (it will report what language it detected)
+if language == "English":
+    langModel = "base.en"
+else:
+    langModel = "base"
+
 # Update path as needed
 computer = "510fu"
-path = "C:/Users/%s/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/samples/" % computer
+baseFileFolder = "samples" # samples, spanish
+####################
+path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
 os.chdir(path) # Set base path as working directory
 wav_files = glob.glob(os.path.join("./mfa_input/", "*.wav")) # Not case sensitive
 
 for inputWav in wav_files:
     print("Processing " + Path(inputWav).name)
     
-    result = whisper.transcribe(model="base.en",audio=inputWav,vad=True,beam_size=5, best_of=5, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
+    result = whisper.transcribe(model=langModel,audio=inputWav,vad=True,beam_size=5, best_of=5, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
     # Alternatively:
     # model = whisper.load_model("base.en")
     # result = model.transcribe(inputWav,word_timestamps=True)
@@ -40,9 +56,8 @@ for inputWav in wav_files:
     outputTranscription = ' '.join(outputTranscription)
 
     # Save unaligned transcript
-    with open(inputWav.replace(".wav","").replace(".WAV","")+".txt", "w") as file:
+    with open(inputWav.replace(".wav","").replace(".WAV","")+".txt", "w", encoding="utf-8") as file:
         file.write(outputTranscription)
-
 
     ###############################
     # All of the following is commented out.

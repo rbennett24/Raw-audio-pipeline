@@ -9,7 +9,7 @@ library(vroom)
 ######################################
 # Set working directory
 ######################################
-computer = "Tiamat"
+computer = "510fu"
 
 setwd(paste0("C:/Users/",computer,"/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/spanish/mfa_aligned/")) # Where files are stored.
 
@@ -94,9 +94,12 @@ formants %>% group_by(phone,formant.smoothed) %>% summarize(mean=mean(freq,na.rm
                                                   median=median(freq,na.rm=T))
 
 # Get rid of vowel nasality
+# summary(formants$phone)
+# sum(summary(formants$phone))
 vnas <- "̃"
 formants <- formants %>% mutate(phone = str_replace(phone,vnas,"")) %>% mutate(phone = factor(phone))
-summary(formants$phone)
+# summary(formants$phone)
+# sum(summary(formants$phone))
 
 ######################################
 # Add some factors
@@ -120,18 +123,18 @@ formants.spk <- ggplot(data = midpoints) +
   scale_y_reverse(expand = expansion(mult = c(0.2, 0.2))) + # wider axis padding
   scale_x_reverse(expand = expansion(mult = c(0.1, 0.1))) + # wider axis padding
   theme_bw(base_size = 12)+
-  theme(axis.text = element_text(size=12))+
+  theme(axis.text = element_text(size=8))+
   facet_wrap(.~speaker,ncol=3)+
   guides(color="none")+
   coord_fixed()
 
 
-formants.spk
+# formants.spk
 
 
 output_file<-paste0(outDir,"sample_formants_spanish.png")
 agg_png(file=output_file,
-        width=10,height=7,units="in",
+        width=4,height=3.75,units="in",
         res=250)
   print(formants.spk)
 dev.off()

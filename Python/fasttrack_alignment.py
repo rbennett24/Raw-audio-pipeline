@@ -29,8 +29,8 @@ import pandas as pd
 vlabels = "[AEIOUaeiouãẽĩõũ]"
 
 # Update path as needed
-computer = "510fu"
-baseFileFolder = "samples" # samples, spanish
+computer = "Tiamat"
+baseFileFolder = "spanish" # samples, spanish
 ####################
 basePath = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/mfa_aligned/"
 os.chdir(basePath) # Set base path as working directory

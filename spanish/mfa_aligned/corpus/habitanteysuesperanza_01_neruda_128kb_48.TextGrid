@@ -14,14 +14,14 @@ item []:
         intervals: size = 3 
         intervals [1]:
             xmin = 0 
-            xmax = 0.52 
+            xmax = 0.33 
             text = "trate" 
         intervals [2]:
-            xmin = 0.52 
-            xmax = 0.86 
+            xmin = 0.33 
+            xmax = 0.45 
             text = "de" 
         intervals [3]:
-            xmin = 0.86 
+            xmin = 0.45 
             xmax = 1.215011 
             text = "encontrarla" 
     item [2]:
@@ -29,16 +29,76 @@ item []:
         name = "phones" 
         xmin = 0 
         xmax = 1.215011 
-        intervals: size = 3 
+        intervals: size = 18 
         intervals [1]:
             xmin = 0 
-            xmax = 0.52 
-            text = "spn" 
+            xmax = 0.09 
+            text = "t̪" 
         intervals [2]:
-            xmin = 0.52 
-            xmax = 0.86 
-            text = "spn" 
+            xmin = 0.09 
+            xmax = 0.13 
+            text = "ɾ" 
         intervals [3]:
-            xmin = 0.86 
+            xmin = 0.13 
+            xmax = 0.21 
+            text = "a" 
+        intervals [4]:
+            xmin = 0.21 
+            xmax = 0.28 
+            text = "t̪" 
+        intervals [5]:
+            xmin = 0.28 
+            xmax = 0.33 
+            text = "e" 
+        intervals [6]:
+            xmin = 0.33 
+            xmax = 0.4 
+            text = "d̪" 
+        intervals [7]:
+            xmin = 0.4 
+            xmax = 0.45 
+            text = "e" 
+        intervals [8]:
+            xmin = 0.45 
+            xmax = 0.51 
+            text = "ẽ" 
+        intervals [9]:
+            xmin = 0.51 
+            xmax = 0.52 
+            text = "ŋ" 
+        intervals [10]:
+            xmin = 0.52 
+            xmax = 0.58 
+            text = "k" 
+        intervals [11]:
+            xmin = 0.58 
+            xmax = 0.63 
+            text = "õ" 
+        intervals [12]:
+            xmin = 0.63 
+            xmax = 0.67 
+            text = "n" 
+        intervals [13]:
+            xmin = 0.67 
+            xmax = 0.72 
+            text = "t̪" 
+        intervals [14]:
+            xmin = 0.72 
+            xmax = 0.78 
+            text = "ɾ" 
+        intervals [15]:
+            xmin = 0.78 
+            xmax = 0.84 
+            text = "a" 
+        intervals [16]:
+            xmin = 0.84 
+            xmax = 0.92 
+            text = "ɾ" 
+        intervals [17]:
+            xmin = 0.92 
+            xmax = 0.99 
+            text = "l" 
+        intervals [18]:
+            xmin = 0.99 
             xmax = 1.215011 
-            text = "spn" 
+            text = "a" 

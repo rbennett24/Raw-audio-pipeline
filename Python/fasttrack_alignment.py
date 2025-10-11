@@ -25,12 +25,12 @@ import pandas as pd
 # Parameters to set
 
 # A regular expression telling FastTrack what vowel symbols to look for. Default is [AEIOU], i.e. English ARPABET.
-# This is currently not working very well outside of English.
+# This is currently not working outside of English ARPABET.
 vlabels = "[AEIOUaeiouãẽĩõũ]"
 
 # Update path as needed
-computer = "Tiamat"
-baseFileFolder = "spanish" # samples, spanish
+computer = "510fu"
+baseFileFolder = "samples" # samples, spanish
 ####################
 basePath = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/mfa_aligned/"
 os.chdir(basePath) # Set base path as working directory
@@ -51,7 +51,7 @@ for w in wav_files:
 
 outputPath = inputPath
 
-command = f"fasttrack corpus --target-labels \"{vlabels}\" --corpus {inputPath} --output fasttrack.csv"
+command = f"fasttrack corpus --target-labels {vlabels} --corpus {inputPath} --output fasttrack.csv"
 subprocess.Popen(["start", "cmd", "/k", command], shell=True)
 
 

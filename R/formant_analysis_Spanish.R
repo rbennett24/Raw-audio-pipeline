@@ -9,7 +9,7 @@ library(vroom)
 ######################################
 # Set working directory
 ######################################
-computer = "510fu"
+computer = "Tiamat"
 
 setwd(paste0("C:/Users/",computer,"/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/spanish/mfa_aligned/")) # Where files are stored.
 
@@ -93,54 +93,30 @@ formants %>% group_by(formant.smoothed) %>% summarize(mean=mean(freq,na.rm=T),
 formants %>% group_by(phone,formant.smoothed) %>% summarize(mean=mean(freq,na.rm=T),
                                                   median=median(freq,na.rm=T))
 
+# Get rid of vowel nasality
+vnas <- "̃"
+formants <- formants %>% mutate(phone = str_replace(phone,vnas,"")) %>% mutate(phone = factor(phone))
+summary(formants$phone)
 
 ######################################
 # Add some factors
-formants <- formants %>% mutate(vqual = substr(phone,1,2),
-                                stress = substr(phone,3,3),
-                                )
-
-summary(factor(formants$stress))
-summary(factor(formants$vqual))
-
-formants <- formants %>% filter(stress > 0) # Primary/secondary stress
-
-formants$vqual <- recode(formants$vqual,
-                          "AA" = "ɑ",
-                          "AE" = "æ",
-                          "AH" = "ʌ",
-                          "AO" = "ɔ",
-                          "AY" = "a͡ɪ",
-                          "EH" = "ɛ",
-                          "ER" = "ɝ",
-                          "EY" = "e͡ɪ",
-                          "IH" = "ɪ",
-                          "IY" = "i",
-                          "OW" = "o͡ʊ",
-                          "OY" = "ɔ͡ɪ",
-                          "UH" = "ʊ",
-                          "UW" = "u"
-                          )
 
 formants$speaker <- str_split(formants$file_name,"_",simplify=T)[,1]
   
-formants <- formants %>% mutate_at(c("vqual","stress","speaker"),as.factor)
+formants <- formants %>% mutate_at(c("speaker"),as.factor)
 
 formants <- formants %>% pivot_wider(names_from = formant.smoothed,values_from=freq)
 formants <- formants %>% mutate(F1.norm=F1/F3,
                                 F2.norm=F2/F3)
 formants
 
-
 # Take average values over middle 10%
-midpoints <- formants %>% group_by(speaker,vqual) %>% filter(step >= 45 &  step <=55) %>% summarize_at(c("F1","F2","F3","F1.norm","F2.norm"),mean)
+midpoints <- formants %>% group_by(speaker,phone) %>% filter(step >= 45 &  step <=55) %>% summarize_at(c("F1","F2","F3","F1.norm","F2.norm"),mean)
 midpoints
 
 
-midpoints.monop <- midpoints %>% filter(str_length(vqual)==1) # Monophthongs only
-
-formants.spk <- ggplot(data = midpoints.monop) + 
-  geom_label(aes(x=F2,y=F1,color=vqual,label=vqual),alpha=0.4)+
+formants.spk <- ggplot(data = midpoints) + 
+  geom_label(aes(x=F2,y=F1,color=phone,label=phone),alpha=0.4)+
   scale_y_reverse(expand = expansion(mult = c(0.2, 0.2))) + # wider axis padding
   scale_x_reverse(expand = expansion(mult = c(0.1, 0.1))) + # wider axis padding
   theme_bw(base_size = 12)+
@@ -149,10 +125,11 @@ formants.spk <- ggplot(data = midpoints.monop) +
   guides(color="none")+
   coord_fixed()
 
-# formants.spk
+
+formants.spk
 
 
-output_file<-paste0(outDir,"sample_formants.png")
+output_file<-paste0(outDir,"sample_formants_spanish.png")
 agg_png(file=output_file,
         width=10,height=7,units="in",
         res=250)
@@ -170,5 +147,3 @@ dev.off()
 #   facet_wrap(.~vqual)
 # 
 # raw.formants.spk
-
-

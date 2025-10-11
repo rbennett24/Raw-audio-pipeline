@@ -23,11 +23,20 @@ language = "English"
 
 # Set language model
 # https://github.com/openai/whisper?tab=readme-ov-file#available-models-and-languages
-# base.en for English; bare base should work for other languages (it will report what language it detected)
+# "turbo model is an optimized version of large-v3 that offers faster transcription speed with a minimal degradation in accuracy"
+# Options are {tiny, base, small, medium, large turbo}, with English-specific {tiny.en, base.en, small.en, medium.en}
+# base(.en) is pretty good, and *much* faster than turbo, but turbo should have improved performance (or so they say).
 if language == "English":
-    langModel = "base.en"
+    langModel = "base.en" # turbo is another good option; it is slower, but should be more accurate (possibly with somewhat diminished returns?)
 else:
-    langModel = "base"
+    langModel = "turbo" # base is much faster, and doesn't seem *too* degraded, but the extra accuracy with turbo might be worth it for non-English input
+
+# Tell whisper what language to expect.
+# Otherwise, it will try to guess at the language, and will tell you what its guess is.
+# https://github.com/openai/whisper/blob/c0d2f624c09dc18e709e37c2ad90c039a4eb72a2/whisper/tokenizer.py#L10
+# https://whisper-api.com/docs/languages/
+if language == "Spanish":
+    lngcode = "es"
 
 # Update path as needed
 computer = "510fu"
@@ -40,7 +49,10 @@ wav_files = glob.glob(os.path.join("./mfa_input/", "*.wav")) # Not case sensitiv
 for inputWav in wav_files:
     print("Processing " + Path(inputWav).name)
     
-    result = whisper.transcribe(model=langModel,audio=inputWav,vad=True,beam_size=5, best_of=5, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
+    if len(lngcode) > 0: # Specified language
+        result = whisper.transcribe(model=langModel,language=lngcode,audio=inputWav,vad=True,beam_size=5, best_of=5, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
+    else: # Let whisper guess at the language
+        result = whisper.transcribe(model=langModel,audio=inputWav,vad=True,beam_size=5, best_of=5, temperature=(0.0, 0.2, 0.4, 0.6, 0.8, 1.0))
     # Alternatively:
     # model = whisper.load_model("base.en")
     # result = model.transcribe(inputWav,word_timestamps=True)

@@ -4,21 +4,51 @@ Scripts for processing raw, untranscribed audio to time-aligned word- and segmen
 Presentation of sample results: https://docs.google.com/presentation/d/1PA5rW-72sAACNJwCbeuTEhJ1aXAPOB9A4i5V8oMv9j0/edit?usp=sharing
 
 **************
-To do right now:
-* Integrate out of dictionary processing, maybe with g2p?
-	* Relatedly, deal with .wav files that have not been successfully aligned. These will probably have to be moved to a separate folder so that they don't cause problems (this is now implemented in [run_mfa.py](Python/run_mfa.py)).
+Goals/to do:
+* Integrate out-of-dictionary processing in the workflow, to more clearly flag words in the corpus missing from the dictionary (e.g. integrate a step which asks you to open the relevant .txt log files).
+	* To address OOD words: maybe invoke grapheme-to-phoneme models, when available?
 
-* Check out [spacey-cleaner](https://github.com/Ce11an/spacy-cleaner) as a num2word alternative, and as a different method for removing punctuation, across .py files.
+* Stress-test against a wider range of non-English languages
 
-* Test pipeline on longer and messier files (e.g. Librivox recordings)
+* Adjust workflow so that it's possible to reconstruct the original input .wav files in their entirety, including pauses and all other material which is currently excised and left untranscribed in the pipeline.
+
+* Write scripts to help partially automate/speed up the process of hand correction.
+	* E.g. scripts which iterate through files in a directory, opening them in order, maybe starting with a specific file.
+	
+	* Will need to be done with .wav + .txt/.TextGrid pairs.
+	
+	* For forced alignment in particular: some way to focus on alignments which have the lowest confidence scores (below some threshold)? Focus on alignments which are most likely to be incorrect? (E.g. vowel-glide-vowel?)
+	
+		* Confidence scores for pyannote.audio diarization require the precision-2 premium model – this can be used with free tokens, but right now we’re on the fully free, open version
+
+* Speed up/improve transcription section of the pipeline (see notes below).
+
+
+* Test pipeline on longer and messier files (e.g. Librivox recordings, podcasts, etc.)
+
+* Check out [spacey-cleaner](https://github.com/Ce11an/spacy-cleaner) as a num2word alternative, and as a different method for removing punctuation and converting numerals, across .py files.
+
+* Improve formant tracking script to implement automated formant range setting on a by-speaker basis (as you've done with Praat scripts before).
+
+	* Following De Looze & Rauzy (2009) and Evanini et al. (2011) --- see Bennett et al. (2022) e.g.
 
 * Improve file folder organization schemes, and update paths in scripts as appropriate.
 
-**************
+* Make the workflow more user-friendly.
+	* Maybe set it up on a server for remote access? Or on Google Colab, Jupyter Notebooks, etc.?
+	
+* Extend pipeline to recordings with multispeaker interactions.
+
+
+<!-- **************
 Goals:
 * Extend beyond English
+	* Partially tested.
 * Connect parts of the pipeline together as single-step processes whenever possible.
 * Other types of flexibility?
+************** -->
+
+
 **************
 
 0. If needed, convert mp3 files to .wav using [mp3_to_wav_converter.py](Python/mp3_to_wav_converter.py)
@@ -40,7 +70,7 @@ Goals:
 
 5. Apply speech recognition to generate .txt transcripts with [whisper_transcription.py](Python/whisper_transcription.py), using [whisper.ai](https://github.com/openai/whisper)
 
-	* This is slow. We need to look into faster methods (e.g. [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper)).
+	* This is slow (at least when using more accurate models like large.en or turbo). We need to look into faster methods (e.g. [insanely-fast-whisper](https://github.com/Vaibhavs10/insanely-fast-whisper)).
 	
 	* Also, need to **deal with punctuation and numerals in a more effective way**, since these may cause issues with forced alignment later on.
 	

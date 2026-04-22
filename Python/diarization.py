@@ -1,7 +1,8 @@
 # https://github.com/pyannote/pyannote-audio?tab=readme-ov-file
 
 # You should also run:
-# pip install pyannote.audio# pip install huggingface_hub[hf_xet]
+# pip install pyannote.audio
+# pip install huggingface_hub[hf_xet]
 from pyannote.audio import Pipeline # pyannote v3.4.0; torch-audiomentations v0.12.0; torch_pitch_shift v1.2.5;
                                     # torchaudio v2.8.0; torchmetrics v1.8.2; torchvision v0.23.0; ffmpeg 1.4
 import string
@@ -9,6 +10,8 @@ import textgrid # textgrid v1.5 and v.1.6.1 both seem to work
 import csv
 import os
 import glob
+
+from pydub import AudioSegment
 
 ####################
 # Input .wav files are expected in .../samples/initial_recordings/
@@ -25,6 +28,7 @@ import glob
 # In Windows, on the command line, use <set HF_TOKEN = "YOUR_ACTUAL_TOKEN_CODE"> to store the token locally.
 print("Accessing Hugging Face API to use pyannote.audio tools.\n\n")
 access_token = os.environ.get('HF_TOKEN')
+# print(access_token)
 
 # You might need to run this command *once* with the actual access token
 # written out, rather than calling HF_TOKEN as an environmental variable?
@@ -32,7 +36,7 @@ access_token = os.environ.get('HF_TOKEN')
 
 # Update path
 computer = "510fu"
-baseFileFolder = "samples" # samples, spanish
+baseFileFolder = "samples-error" # samples, spanish
 ####################
 path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
 os.chdir(path) # Set base path as working directory
@@ -41,8 +45,9 @@ wav_files = glob.glob(os.path.join("./initial_recordings/", "*.wav")) # Not case
 
 print("Initializing pipeline for speech detection and diarization (speaker identification).\n\n")
 pipeline = Pipeline.from_pretrained(
-    "pyannote/speaker-diarization-3.1",
+    "pyannote/speaker-diarization-3.1", # Might update to "pyannote/speaker-diarization-community-1" or whatever is now current.
     use_auth_token="access_token") # Huggingface token; make sure token has "Read access to contents of all public gated repos you can access" enabled
+    # For newer versions of pyannote: <use_auth_token="access_token"> might need to be <token="access_token">
 
 # send pipeline to GPU (when available)
 import torch
@@ -50,6 +55,8 @@ import torch
 
 for w in wav_files:
     inputWav = w
+    
+    wavDur = AudioSegment.from_file(inputWav).duration_seconds
 
     # apply pretrained pipeline    
     # It's useful to set  the number of speakers expected in the files
@@ -63,8 +70,11 @@ for w in wav_files:
     with open(tmpCSV, "w", encoding="utf-8") as file:
         file.write('start_time,end_time,speaker\n')
         for turn, _, speaker in diarization.itertracks(yield_label=True):
-            outText = f"{turn.start},{turn.end},{speaker}\n"
-            file.write(outText)
+            if turn.start > wavDur or turn.end > wavDur:
+                pass
+            else:
+                outText = f"{turn.start},{turn.end},{speaker}\n"
+                file.write(outText)
 
     # Load the CSV data
     with open(tmpCSV,

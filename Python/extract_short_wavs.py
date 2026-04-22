@@ -22,7 +22,7 @@ import shutil
 ####################
 # Parameters to set
 # Update path
-computer = "510fu"
+computer = ""
 baseFileFolder = "samples" # samples, spanish
 ####################
 path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"

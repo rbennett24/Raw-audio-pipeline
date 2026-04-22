@@ -35,7 +35,7 @@ access_token = os.environ.get('HF_TOKEN')
 # I don't know *why* that would be, but that seemed to be an issue with one of my computers.
 
 # Update path
-computer = "510fu"
+computer = ""
 baseFileFolder = "samples" # samples, spanish
 ####################
 path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"

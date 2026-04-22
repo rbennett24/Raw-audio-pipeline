@@ -8,6 +8,8 @@ from os.path import join
 from praatio import praatio_scripts # praatio v6.2.0
 import glob
 from pydub import AudioSegment, effects # pydub v0.25.1
+# Versions of Python > 3.13 may throw an error because pydub calls audioop, which has
+# been removed from Python as of v3.13+; use 3.12.8 or earlier.
 from pathlib import Path # pathlib v1.0.1
 import shutil
 
@@ -46,7 +48,7 @@ for wav in wav_files:
 
     praatio_scripts.splitAudioOnTier(
         normWav, # Input .wav file
-        wav.replace(".wav","_diarized.TextGrid"), # Input .TextGRid file
+        wav.replace(".wav","_diarized.TextGrid"), # Input .TextGrid file
         "DetectedSpeech", # Tier
         outputPath, # Output path
         outputTGFlag = False # We don't want chunked .TextGrids here, just the .wav files.

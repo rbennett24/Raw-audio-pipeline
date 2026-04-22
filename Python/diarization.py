@@ -36,7 +36,7 @@ access_token = os.environ.get('HF_TOKEN')
 
 # Update path
 computer = "510fu"
-baseFileFolder = "samples-error" # samples, spanish
+baseFileFolder = "samples" # samples, spanish
 ####################
 path = f"C:/Users/{computer}/Dropbox/GIT/Raw_audio_pipeline/Raw-audio-pipeline/{baseFileFolder}/"
 os.chdir(path) # Set base path as working directory
